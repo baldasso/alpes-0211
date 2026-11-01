@@ -77,7 +77,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,10,20,.05) 20%,rgba(7,10,20,.85) 100%)}
 .photo .ph{position:absolute;left:18px;right:18px;bottom:14px;z-index:1}
 .head{padding:18px 18px 8px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
-.photo + .head{padding-top:12px}
+.photo + .brand{padding-top:14px}
 .time{line-height:.9}
 .time .h{font-family:"Inter Tight";font-weight:800;font-size:40px;letter-spacing:-.045em;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .time .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:8px;font-family:Inter}
@@ -110,6 +110,39 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 .alert.prep{background:var(--gold-grad);color:#1A1200;box-shadow:0 12px 30px -10px rgba(228,185,91,.6)}
 .alert.warn{background:linear-gradient(135deg,#3B2A10,#241A0A);color:#FFD37A;font-weight:600;font-size:14px}
 .alert.okk{background:linear-gradient(135deg,#0F3A26,#0B2A1B);color:#9CEFC0;font-weight:600;font-size:14px}
+
+
+/* ===== temas por operador ===== */
+.card.th{--acc:#E4B95B;--accgrad:var(--gold-grad);--tint:rgba(228,185,91,.10);border-color:color-mix(in srgb,var(--acc) 28%,transparent);background:linear-gradient(160deg,var(--tint),rgba(255,255,255,.02) 55%),var(--card)}
+.card.th .time .h{background:var(--accgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card.th .time .k{color:var(--acc)}
+.brand{display:flex;align-items:center;gap:10px;padding:16px 18px 0}
+.brand .mark{white-space:nowrap;height:26px;padding:0 10px;border-radius:7px;display:inline-flex;align-items:center;font-family:"Inter Tight";font-weight:800;font-size:12.5px;letter-spacing:.02em}
+.brand .sub{font-size:10.5px;line-height:1.3;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--acc)}
+/* SBB: vermelho/branco */
+.card.th-sbb{--acc:#FF6A5C;--accgrad:linear-gradient(135deg,#FFFFFF 0%,#FFD6D1 55%,#FF6A5C 100%);--tint:rgba(235,0,0,.12)}
+.th-sbb .brand .mark{background:#EB0000;color:#fff}
+/* GoldenPass Prestige */
+.card.th-gold{--acc:#F2D48A;--accgrad:linear-gradient(135deg,#FFF3D0 0%,#F2D48A 40%,#C79A3C 100%);--tint:rgba(242,212,138,.14);background:radial-gradient(600px 300px at 50% -10%,rgba(242,212,138,.22),transparent 60%),linear-gradient(170deg,#1A1A1F,#0C0C10);border:1px solid rgba(242,212,138,.35);box-shadow:0 0 0 1px rgba(0,0,0,.6),0 0 0 5px rgba(242,212,138,.08),0 40px 80px -40px rgba(0,0,0,.9)}
+.th-gold .brand{padding-top:18px}
+.th-gold .brand .mark{background:linear-gradient(135deg,#2A2A30,#141418);color:#F2D48A;border:1px solid rgba(242,212,138,.45);letter-spacing:.14em;font-weight:700;font-family:Inter}
+.th-gold .head{position:relative}
+.th-gold .head:before,.th-gold .head:after{content:"";position:absolute;left:18px;right:18px;height:1px;background:linear-gradient(90deg,transparent,rgba(242,212,138,.6),transparent)}
+.th-gold .head:before{top:6px}.th-gold .head:after{bottom:0}
+.th-gold .cmd{font-weight:600;letter-spacing:-.02em}
+.th-gold .sub{color:#D9CFB8}
+.th-gold .do .it{border-top-color:rgba(242,212,138,.14)}
+.th-gold .diag{background:linear-gradient(160deg,rgba(242,212,138,.08),rgba(255,255,255,.015));border-color:rgba(242,212,138,.22)}
+.th-gold .pb{border-color:rgba(242,212,138,.22)}
+/* PostAuto */
+.card.th-post{--acc:#FFD23F;--accgrad:linear-gradient(135deg,#FFF2B0 0%,#FFD23F 55%,#E0A800 100%);--tint:rgba(255,204,0,.12)}
+.th-post .brand .mark{background:#FFCC00;color:#111}
+/* BOB */
+.card.th-bob{--acc:#8FB4FF;--accgrad:linear-gradient(135deg,#FFFFFF 0%,#BFD3FF 50%,#5B8DEF 100%);--tint:rgba(31,79,163,.22)}
+.th-bob .brand .mark{background:linear-gradient(90deg,#1F4FA3 0 60%,#F5C518 60%);color:#fff}
+/* neutro (transfer, hotel) */
+.card.th-neutral{--acc:#E4B95B}
+.th-neutral .brand .mark{background:rgba(255,255,255,.08);color:var(--ink-2);border:1px solid var(--line-2)}
 
 /* ===== dock ===== */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,10,20,.6),rgba(7,10,20,.95));backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-top:1px solid var(--line)}
@@ -368,62 +401,62 @@ D.stops=({stops,prep,off,dur})=>{const n=stops.length,x0=56,x1=544,st=(x1-x0)/(n
 
 /* ============================================================ PASSOS */
 const M=[
- {id:'m0',t:'08:20',end:'09:45',node:0.25,stage:'Transfer',photo:'img/geneva.jpg',cmd:'Entrar no transfer e dizer o destino.',sub:'Porta do Rivage às 08:30 · 1h a 1h20 até a estação dentro do aeroporto',
+ {id:'m0',th:'neutral',mark:'Transfer privado',msub:'Rivage → Genève-Aéroport',t:'08:20',end:'09:45',node:0.25,stage:'Transfer',photo:'img/geneva.jpg',cmd:'Entrar no transfer e dizer o destino.',sub:'Porta do Rivage às 08:30 · 1h a 1h20 até a estação dentro do aeroporto',
   sign:()=>SIGN.dir('Gare CFF · Genève-Aéroport'),signTxt:'<b>“Gare CFF de Genève-Aéroport, s’il vous plaît.”</b> É a estação de trem dentro do aeroporto, lado suíço.',
   diag:null,
   do:[['bag','As <b>6 malas</b> no porta-malas do carro. Na mochila, com vocês: <b>passaportes, celulares, €160–180</b> do transfer.'],['see','Fronteira França → Suíça no caminho: passaportes à mão.'],['say','Avisem o motorista: <b>“Le train est à 10h55.”</b>']],
   pb:'Trânsito? Só vira problema depois das 10:40. Qualquer coisa, o IR 95 das 11:14 também vai a Montreux.'},
- {id:'m1',t:'09:45',end:'10:40',node:1,stage:'Genève-Aéroport',photo:null,cmd:'Descer um nível. Achar a Voie 3.',sub:'Chegada ~09:45 · mais de 1 hora de folga',
+ {id:'m1',th:'sbb',mark:'SBB CFF FFS',msub:'Genève-Aéroport · estação',t:'09:45',end:'10:40',node:1,stage:'Genève-Aéroport',photo:null,cmd:'Descer um nível. Achar a Voie 3.',sub:'Chegada ~09:45 · mais de 1 hora de folga',
   sign:()=>SIGN.platform(3,'A B C D'),signTxt:'A placa <b>azul com o 3</b> é a sua plataforma. Letras A–D são os setores: qualquer um serve.',
   diag:()=>SIGN.board('10:55','IR 90','Brig','via Lausanne · Vevey · Montreux','3'),diagCap:'É assim que o trem aparece no painel: destino Brig. Montreux é parada no meio.',
   do:[['see','Siga a placa <span class="w">Gare CFF · Bahnhof</span>. Pegue um <b>carrinho de bagagem</b> e desça pelo <b>elevador</b> até os trens.'],['see','Nada para comprar nem validar: bilhetes no app SBB.'],['ear','Às <b>10:45</b>, os dois na Voie 3 com tudo. O trem para só 2 minutos.']],
   pb:'Sem “IR 90 10:55” no painel? Procure qualquer trem para <b>Brig</b> e pergunte “Montreux?”. O app SBB (destino Grindelwald) refaz a rota sozinho.'},
- {id:'m2',t:'10:40',end:'10:55',node:1.1,stage:'IR 90',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 90 · 10:55 → Montreux 12:09',
+ {id:'m2',th:'sbb',mark:'SBB · IR 90',msub:'InterRegio · 2ª classe',t:'10:40',end:'10:55',node:1.1,stage:'IR 90',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 90 · 10:55 → Montreux 12:09',
   sign:()=>SIGN.platform(3),signTxt:'Qualquer vagão com um <b>2</b> grande ao lado da porta. Não há lugar marcado.',
   diag:()=>D.coach({}),diagCap:'Malas grandes no porta-malas junto à porta. Vocês nos primeiros assentos, de olho nelas.',
   do:[['bag','<b>3 malas grandes</b> → porta-malas na ponta do vagão, logo ao entrar. <b>Mala de bordo e mochila</b> → com vocês.'],['see','Trem de dois andares: fiquem <b>embaixo</b>, perto das malas.'],['see','Depois de Lausanne, o lago fica do lado direito.']],
   pb:'Perderam o 10:55? <b>IR 95 às 11:14</b>, mesma Voie 3 → Montreux 12:36. O GoldenPass se perde; fiquem no IR 95 até <b>Visp</b> (13:50) → IC 8 → Spiez 14:21 → IC 61 → Interlaken West 14:53.'},
- {id:'m3',t:'10:55',end:'12:09',node:1.5,stage:'IR 90',photo:'img/montreux.jpg',cmd:'1h14 de viagem. Descer em Montreux, 6ª parada.',sub:'Preparar em Vevey (12:03) · descer 12:09 na Voie 3',
+ {id:'m3',th:'sbb',mark:'SBB · IR 90',msub:'InterRegio · 2ª classe',t:'10:55',end:'12:09',node:1.5,stage:'IR 90',photo:'img/montreux.jpg',cmd:'1h14 de viagem. Descer em Montreux, 6ª parada.',sub:'Preparar em Vevey (12:03) · descer 12:09 na Voie 3',
   sign:null,
   diag:()=>D.stops({stops:['Gen.-Aéroport','Genève','Nyon','Morges','Lausanne','Vevey','Montreux'],prep:5,off:6,dur:'anúncio: “Prochain arrêt: Montreux”'}),diagCap:'Em Vevey, levantar e pegar as malas. Em Montreux, descer: a parada dura 1 minuto.',
   do:[['ear','Quando anunciarem <b>Vevey</b>: levantem, peguem as <b>3 malas grandes</b> no porta-malas e fiquem perto da porta com as 6.'],['off','<b>Descer em Montreux, 12:09.</b> Mesma Voie 3 de onde o trem chega.']],
   pb:'Passaram de Montreux? Desçam em Aigle (próxima) e voltem no primeiro trem, 10 min. Se perder o GoldenPass: ver o passo de Montreux.'},
- {id:'m4',t:'12:09',end:'12:32',node:2,stage:'Montreux',photo:null,cmd:'Elevador. Nível de cima. Voie 5.',sub:'23 minutos para trocar · GoldenPass Express 12:32',
+ {id:'m4',th:'gold',mark:'GOLDENPASS EXPRESS',msub:'Troca Montreux · MOB',t:'12:09',end:'12:32',node:2,stage:'Montreux',photo:null,cmd:'Elevador. Nível de cima. Voie 5.',sub:'23 minutos para trocar · GoldenPass Express 12:32',
   sign:()=>SIGN.platform(5),signTxt:'Siga as placas <b>MOB · GoldenPass</b>. As voies 5–7 ficam <b>no andar de cima</b> da mesma estação. Elevador, não escada.',
   diag:()=>D.levels(),diagCap:'Da Voie 3 ao elevador, um andar para cima, Voie 5.',
   do:[['see','No painel: <b>12:32 · GoldenPass Express</b>. O destino pode dizer <i>Interlaken Ost</i> ou <i>Zweisimmen</i> — é o mesmo trem.'],['see','Na plataforma, procurem o <b>carro 10</b>, número na lateral. A classe Prestige fica numa das pontas.'],['say','Reserva <b>1233940-1</b> · carro 10 · assentos <b>12 e 18</b>. Embarcar até 12:27.']],
   pb:'Perderam o 12:32? A reserva se perde, o bilhete não. <b>12:37 IR 95 (Voie 3)</b> → Visp 13:50 → IC 8 → Spiez 14:21 → IC 61 → Interlaken West 14:53. Ou GoldenPass das 14:32 com nova reserva.'},
- {id:'m5',t:'12:32',end:'15:20',node:2.4,stage:'GoldenPass',photo:'img/goldenpass.jpg',cmd:'Carro 10. Malas na entrada. Sentar.',sub:'Montreux 12:32 → Interlaken West 15:43 · sem troca',
+ {id:'m5',th:'gold',mark:'GOLDENPASS EXPRESS',msub:'Prestige Class · carro 10',t:'12:32',end:'15:20',node:2.4,stage:'GoldenPass',photo:'img/goldenpass.jpg',cmd:'Carro 10. Malas na entrada. Sentar.',sub:'Montreux 12:32 → Interlaken West 15:43 · sem troca',
   sign:()=>SIGN.car(10),signTxt:'Número do carro na lateral. <b>Assentos 12 e 18</b>, numerados nos encostos. O pessoal de bordo ajuda com as malas.',
   diag:()=>D.prestige(),diagCap:'Porta-malas na entrada do carro. Mochilas com vocês ou no bagageiro acima.',
   do:[['bag','Ao entrar: <b>malas grandes no porta-malas da entrada</b>. O resto com vocês.'],['see','Serviço à mesa: <b>Ladurée e uma taça de champanhe</b> cada.'],['see','Em <b>Zweisimmen</b> o trem troca de bitola com vocês dentro, sem descer.']],
   pb:'Não acharam o carro 10 a tempo? Entrem em qualquer porta do GoldenPass e caminhem por dentro: o trem é contínuo.'},
- {id:'m6',t:'15:20',end:'15:43',node:2.8,stage:'GoldenPass',photo:'img/spiez.jpg',cmd:'Depois de Spiez: malas na mão. Descer na última.',sub:'Interlaken West 15:43 · Gleis 2 · fim da linha',
+ {id:'m6',th:'gold',mark:'GOLDENPASS EXPRESS',msub:'Prestige Class · carro 10',t:'15:20',end:'15:43',node:2.8,stage:'GoldenPass',photo:'img/spiez.jpg',cmd:'Depois de Spiez: malas na mão. Descer na última.',sub:'Interlaken West 15:43 · Gleis 2 · fim da linha',
   sign:()=>SIGN.platform(2),signTxt:'O trem termina em <b>Interlaken West</b>. Todo mundo desce. Interlaken Ost está fechada por obras até 12/12.',
   diag:()=>D.stops({stops:['Montreux','Montbovon','Château-d’Œx','Gstaad','Zweisimmen','Spiez','Interlaken West'],prep:5,off:6,dur:'3h11 · Interlaken West é a última parada'}),diagCap:'Saindo de Spiez (~15:20), pegar as malas na entrada do carro.',
   do:[['ear','Ao sair de <b>Spiez</b>: peguem as malas grandes na entrada do carro.'],['off','<b>Descer em Interlaken West, 15:43.</b> É o fim da linha.'],['say','Ainda sentados, liguem para o hotel: <b>+41 33 854 85 85</b> — <i>“Shuttle at Grindelwald station, 16:40, booking 6283062303.”</i>']],
   pb:'Trem atrasado? Tudo daqui em diante repete a cada 30 min. Só seguir os mesmos passos no próximo horário.'},
- {id:'m7',t:'15:43',end:'15:57',node:3.1,stage:'Interlaken West',photo:null,cmd:'Sair pela frente. Baia E. Ônibus amarelo 105.',sub:'14 minutos · ônibus sai 15:57 da praça em frente à estação',
+ {id:'m7',th:'post',mark:'PostAuto',msub:'Linha 105 · Gsteigwiler',t:'15:43',end:'15:57',node:3.1,stage:'Interlaken West',photo:null,cmd:'Sair pela frente. Baia E. Ônibus amarelo 105.',sub:'14 minutos · ônibus sai 15:57 da praça em frente à estação',
   sign:()=>SIGN.post('E','105','Gsteigwiler'),signTxt:'Baias com letras na praça. A sua é a <b>E</b>. O ônibus é amarelo, linha <b>105</b>, destino Gsteigwiler.',
   diag:()=>D.plaza(),diagCap:'Da saída principal, a praça dos ônibus está na frente. Baia E.',
   do:[['see','Do Gleis 2, saída principal → <b>Bahnhofplatz</b>. Baias A a H.'],['say','Porta da frente. <b>“Wilderswil Bahnhof, bitte.”</b> Se pedir bilhete: app SBB.'],['see','Sai <b>15:57</b>. Chega em Wilderswil 16:06.']],
   pb:'Perderam o 15:57? Próximo 105 às <b>16:27</b> (chegada 17:10 em Grindelwald). Ou qualquer ônibus para <b>Interlaken Ost</b> (102 baia D 15:59 · 108 baia B 16:08) e lá BOB no Gleis 2B às 16:34.'},
- {id:'m8',t:'15:57',end:'16:06',node:3.5,stage:'Ônibus 105',photo:null,cmd:'9 minutos. Descer em “Wilderswil, Bahnhof”.',sub:'Malas ao lado da porta do meio · apertar Stop antes da parada',
+ {id:'m8',th:'post',mark:'PostAuto',msub:'Linha 105 · a bordo',t:'15:57',end:'16:06',node:3.5,stage:'Ônibus 105',photo:null,cmd:'9 minutos. Descer em “Wilderswil, Bahnhof”.',sub:'Malas ao lado da porta do meio · apertar Stop antes da parada',
   sign:()=>SIGN.led('WILDERSWIL, BAHNHOF'),signTxt:'A tela do ônibus mostra a <b>próxima parada</b>. Quando aparecer isto, apertem <b>Stop</b>.',
   diag:()=>D.bus(),diagCap:'Malas no vão junto à porta do meio. Vocês nos assentos logo atrás.',
   do:[['bag','Malas grandes no <b>vão ao lado da porta do meio</b>. Sentem perto.'],['off','<b>Descer em “Wilderswil, Bahnhof”</b>, pela porta do meio. A estação de trem fica ao lado, 1 minuto.']],
   pb:'Passaram do ponto? Desçam na próxima e peçam ao motorista: “Bahnhof?”. Vila pequena, dá para voltar a pé.'},
- {id:'m9',t:'16:06',end:'16:10',node:4,stage:'Wilderswil',photo:null,cmd:'Gleis 2. Só vagão escrito GRINDELWALD.',sub:'Trem BOB das 16:10 · para 1–2 minutos',
+ {id:'m9',th:'bob',mark:'BOB',msub:'Berner Oberland-Bahn · R 61',t:'16:06',end:'16:10',node:4,stage:'Wilderswil',photo:null,cmd:'Gleis 2. Só vagão escrito GRINDELWALD.',sub:'Trem BOB das 16:10 · para 1–2 minutos',
   sign:()=>SIGN.led('GRINDELWALD'),signTxt:'Letreiro na lateral de cada vagão. <b>Entrem só onde diz GRINDELWALD.</b> Os outros vão para Lauterbrunnen.',
   diag:()=>D.split(),diagCap:'O trem é um só até Zweilütschinen, onde se divide em dois vales.',
   do:[['see','Plataforma <b>Gleis 2</b>, setores C–D.'],['off','Vagão certo = letreiro <b>GRINDELWALD</b>. Na dúvida: <b>“Grindelwald?”</b> para quem estiver na porta.']],
   pb:'Perderam o 16:10? Próximo às <b>16:40</b>, mesmo Gleis — chegada 17:10. Vagão errado? Troquem na 1ª parada, Zweilütschinen.'},
- {id:'m10',t:'16:10',end:'16:40',node:4.5,stage:'BOB',photo:'img/grindelwald.jpg',cmd:'30 min. Não descer no Terminal. Descer no fim.',sub:'Grindelwald 16:40 · última parada',
+ {id:'m10',th:'bob',mark:'BOB',msub:'Berner Oberland-Bahn · R 61',t:'16:10',end:'16:40',node:4.5,stage:'BOB',photo:'img/grindelwald.jpg',cmd:'30 min. Não descer no Terminal. Descer no fim.',sub:'Grindelwald 16:40 · última parada',
   sign:null,
   diag:()=>D.stops({stops:['Wilderswil','Zweilütschinen','Lütschental','Burglauenen','Schwendi','Grind. Terminal','Grindelwald'],prep:4,off:6,dur:'30 min · a penúltima parada não é a sua'}),diagCap:'Em Schwendi, malas na mão. Grindelwald Terminal: ficar sentados. Grindelwald: descer.',
   do:[['ear','Em <b>Schwendi</b>: malas na mão.'],['see','<b>“Grindelwald Terminal”</b> é a penúltima. <b>Não é a sua.</b>'],['off','<b>Descer em “Grindelwald”, 16:40.</b> O trem termina ali.']],
   pb:'Desceram no Terminal? Próximo trem em 30 min, ou táxi: 5 minutos.'},
- {id:'m11',t:'16:40',end:'23:59',node:6,stage:'Bergwelt',photo:'img/grindelwald.jpg',cmd:'Shuttle ou táxi. Chegaram.',sub:'Bergwelt 4 · check-in · Eiger na janela',
+ {id:'m11',th:'neutral',mark:'Bergwelt',msub:'Alpine Design Resort',t:'16:40',end:'23:59',node:6,stage:'Bergwelt',photo:'img/grindelwald.jpg',cmd:'Shuttle ou táxi. Chegaram.',sub:'Bergwelt 4 · check-in · Eiger na janela',
   sign:()=>SIGN.dir('Bergwelt Grindelwald'),signTxt:'7 minutos a pé subindo. Com 6 malas: <b>shuttle do hotel</b> (se ligaram) ou <b>táxi</b> na saída da estação, ~CHF 15–20.',
   diag:null,
   do:[['say','Recepção: Booking <b>6283.062.303</b> · PIN <b>5047</b>. Eiger View King Room, 5 noites, café incluído.'],['see','Spa e piscina hoje. Amanhã, Jungfraujoch só com céu limpo.']],
@@ -493,8 +526,9 @@ function renderStep(animate=true){
   const timeBlock=`<div class="time"><div class="h t">${m.t}</div><div class="k">${m.stage}</div></div>`;
   const head=`<div class="head">${timeBlock}<div><div class="cmd">${m.cmd}</div><div class="sub">${m.sub}</div></div></div>`;
   const statusPill=isCur?(n.date===DAY&&left!=null?`<span class="pill ok"><i></i>agora · ${fmtDur(left)} restantes</span>`:`<span class="pill ok"><i></i>passo atual</span>`):(i<pos?`<span class="pill"><i></i>feito</span>`:`<span class="pill"><i></i>a seguir</span>`);
-  const html=`<article class="card step" id="stepCard">
+  const html=`<article class="card step th th-${m.th}" id="stepCard">
     ${m.photo?`<div class="photo"><div class="img" style="background-image:url('${m.photo}')"></div></div>`:''}
+    <div class="brand"><span class="mark">${m.mark}</span><span class="sub">${m.msub}</span></div>
     ${head}
     <div class="pills">${statusPill}${lq?pills(lq.id):''}</div>
     ${alerts?`<div style="height:12px"></div>${alerts}`:''}
@@ -511,7 +545,7 @@ function renderStep(animate=true){
   const db=$('#doneBtn');if(db)db.addEventListener('click',()=>{if(i<M.length-1){setPos(i+1);go(i+1)}});
   const cb=$('#clockBtn');if(cb)cb.addEventListener('click',()=>{delete store.pos;delete store.posDate;save();go(autoIdx())});
   if(animate){
-    const els=stage.querySelectorAll('.photo,.head,.pills,.alert,.sign,.diag,.do .it,.pb');
+    const els=stage.querySelectorAll('.photo,.brand,.head,.pills,.alert,.sign,.diag,.do .it,.pb');
     gsap.fromTo(els,{y:18,opacity:0},{y:0,opacity:1,duration:.55,stagger:.06,ease:'power3.out',clearProps:'transform'});
     const ph=stage.querySelector('.photo .img');if(ph)gsap.fromTo(ph,{scale:1.12},{scale:1,duration:7,ease:'power1.out'});
   }
