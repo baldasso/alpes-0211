@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F5F1EA">
+<title>Annecy → Grindelwald · 02.11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F1EA;--paper-2:#FCFAF6;--paper-3:#ECE6DB;--paper-4:#E2DBCD;
+  --ink:#141720;--ink-2:#3A3F4C;--ink-3:#767D8C;--line:#DCD5C8;--line-2:#CBC3B3;
+  --gold:#B8862B;--gold-2:#E7CC8A;--gold-soft:#F6EBD3;
+  --sbb:#2D327D;--sbbred:#EB0000;--post:#FFCC00;--bob:#0E6A3C;--mob:#1F1F1F;
+  --ok:#1E7F4F;--ok-soft:#DFF2E6;--warn:#B4600F;--warn-soft:#FBEBD6;--bad:#B42318;--bad-soft:#FBE0DD;
+  --r:20px;--shadow:0 1px 2px rgba(20,23,32,.04),0 10px 28px -14px rgba(20,23,32,.22);--ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.45;font-feature-settings:"ss01","cv11","tnum";-webkit-font-smoothing:antialiased;padding-bottom:calc(48px + env(safe-area-inset-bottom))}
+.wrap{max-width:620px;margin:0 auto;padding:0 14px}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.01em}
+.serif{font-family:Fraunces,Georgia,serif}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+a{color:inherit}button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;border-radius:13px;font-weight:700;font-size:15px;border:1.5px solid var(--line-2);background:var(--paper-2);transition:transform .15s var(--ease)}
+.btn:active{transform:scale(.98)}.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}.btn.ghost{background:transparent}.btn.wide{width:100%}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.top .t2{font-family:Fraunces,serif;font-size:19px;line-height:1.1;margin-top:2px}
+.clock{text-align:right;line-height:1}.clock .hm{font-size:28px;font-weight:600;letter-spacing:-.02em}.clock .s{font-size:12px;color:var(--ink-3);margin-left:2px}.clock .tz{font-family:Inter;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-top:5px;font-weight:700}
+.rail{height:3px;background:var(--line);position:relative}.rail i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--gold-2),var(--gold));width:0;transition:width 1s linear}
+
+/* NOW */
+.now{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:var(--r);padding:20px 18px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.now .eyebrow{color:rgba(245,241,234,.6)}
+.now .big{font-family:Fraunces,serif;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin-top:8px;font-weight:500}
+.now .sub{margin-top:10px;font-size:16px;color:rgba(245,241,234,.8);line-height:1.4}
+.now .row{display:flex;gap:10px;margin-top:16px;align-items:stretch}
+.now .cd{flex:1;background:rgba(255,255,255,.08);border-radius:14px;padding:12px 14px}
+.now .cd .v{font-size:36px;font-weight:600;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+.now .cd .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,241,234,.6);font-weight:700;margin-top:6px}
+.now .plat{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px;border-radius:14px;padding:10px 12px;font-weight:800}
+.now .plat .n{font-size:40px;line-height:1;letter-spacing:-.02em}
+.now .plat .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-top:4px}
+.plat.sbb{background:var(--sbb);color:#fff}.plat.post{background:var(--post);color:#111}.plat.bob{background:var(--bob);color:#fff}.plat.mob{background:#F4D27A;color:#111}
+.now .acts{display:flex;gap:10px;margin-top:14px}
+.now .btn{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:var(--paper);flex:1}
+.now .btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.alert{margin-top:12px;border-radius:12px;padding:11px 13px;font-size:14px;line-height:1.4}
+.alert.warn{background:#4A2E0F;color:#FFD9A8}.alert.ok{background:#15372A;color:#A9EBC5}.alert.info{background:#2E2A1C;color:#F0DDA6}
+.alert b{font-weight:800}
+
+/* live & compass */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.02em}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.late{background:var(--warn-soft);color:var(--warn)}.pill.bad{background:var(--bad-soft);color:var(--bad)}.pill.na{background:var(--paper-3);color:var(--ink-3)}
+.now .pill.ok{background:#15372A;color:#A9EBC5}.now .pill.late{background:#4A2E0F;color:#FFD9A8}.now .pill.bad{background:#4A1512;color:#FFB8B0}.now .pill.na{background:rgba(255,255,255,.08);color:rgba(245,241,234,.6)}
+.mo .live{padding:10px 16px 0;display:flex;gap:8px;flex-wrap:wrap}
+.compass{display:flex;align-items:center;gap:14px;margin-top:14px;background:rgba(255,255,255,.08);border-radius:14px;padding:12px 14px}
+.compass .dial{width:64px;height:64px;flex:0 0 64px;position:relative}
+.compass .dial svg{width:100%;height:100%;display:block}
+.compass .arrow{transform-origin:50% 50%;transition:transform .4s var(--ease)}
+.compass .txt{line-height:1.25}.compass .txt .d{font-size:22px;font-weight:700;letter-spacing:-.02em}.compass .txt .k{font-size:12px;color:rgba(245,241,234,.65);margin-top:3px}
+.bigalert{margin-top:12px;border-radius:14px;padding:14px 16px;background:var(--bad);color:#fff;font-weight:800;font-size:18px;line-height:1.25;animation:blink 1.2s 6}
+.bigalert.prep{background:var(--gold);color:#1A1200}
+@keyframes blink{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}
+/* chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0 6px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:9px 13px;border-radius:999px;border:1.5px solid var(--line-2);font-size:13px;font-weight:700;color:var(--ink-2);background:var(--paper-2)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}.chip.auto{border-style:dashed}
+
+/* section */
+.sec{margin-top:30px}.sec-h{margin-bottom:10px}.sec-h h2{font-family:Fraunces,serif;font-size:25px}
+
+/* moments */
+.mo{background:var(--paper-2);border:1.5px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);margin-top:14px;overflow:hidden;position:relative;scroll-margin-top:80px;transition:border-color .2s,opacity .2s}
+.mo.active{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft),var(--shadow)}
+.mo.done{opacity:.55}
+.mo .hd{display:flex;gap:12px;padding:14px 16px 0;align-items:flex-start}
+.mo .tm{flex:0 0 auto;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1;padding-top:3px}
+.mo .tm small{display:block;font-size:11px;letter-spacing:.1em;color:var(--ink-3);font-weight:700;margin-top:5px;font-family:Inter}
+.mo .cmd{font-family:Fraunces,serif;font-size:24px;line-height:1.1;letter-spacing:-.015em;font-weight:500}
+.mo .where{font-size:13.5px;color:var(--ink-3);font-weight:600;margin-top:4px}
+.mo .vis{margin:14px 0 0;background:var(--paper-3);padding:12px 10px 8px}
+.mo .vis svg{display:block;width:100%;height:auto}
+.mo .vis .cap{font-size:12.5px;color:var(--ink-2);text-align:center;padding:8px 6px 2px;font-weight:600}
+.mo .bd{padding:14px 16px 14px}
+.pts{margin:0;padding:0;list-style:none}
+.pts li{display:flex;gap:11px;padding:7px 0;font-size:16px;line-height:1.4}
+.pts li .i{flex:0 0 24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--ink);color:var(--paper);margin-top:1px}
+.pts li .i.bag{background:var(--gold);color:#fff}.pts li .i.ear{background:var(--sbb);color:#fff}.pts li .i.eye{background:var(--ink-2);color:#fff}.pts li .i.no{background:var(--bad);color:#fff}
+.pts b{font-weight:800}
+.say{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--gold-soft);color:#5E4512;font-size:14.5px;line-height:1.4}
+.say b{font-weight:800}
+.planb{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--paper-3);font-size:14px;color:var(--ink-2);line-height:1.4}
+.planb b{color:var(--ink);font-weight:800}
+.mo .mfoot{display:flex;gap:10px;padding:0 16px 16px}
+.sign{display:inline-block;font-weight:800;background:var(--ink);color:var(--paper);padding:1px 7px;border-radius:5px;font-size:14px}
+.sign.blue{background:var(--sbb);color:#fff}.sign.yel{background:var(--post);color:#111}.sign.grn{background:var(--bob);color:#fff}.sign.gold{background:#F4D27A;color:#111}
+
+/* map */
+.card{background:var(--paper-2);border:1.5px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.map svg{display:block;width:100%;height:auto}
+.map .lake{fill:color-mix(in srgb,var(--sbb) 10%,var(--paper-2))}
+.map .road{fill:none;stroke:var(--ink-3);stroke-width:1.6;stroke-dasharray:3 4}
+.map .track{fill:none;stroke:var(--line-2);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.map .track.done{stroke:var(--gold)}
+.map .stn{fill:var(--paper-2);stroke:var(--ink);stroke-width:1.8}
+.map .lab{font-family:Inter;font-size:9.5px;font-weight:700;fill:var(--ink-2)}.map .lab.small{font-size:8px;fill:var(--ink-3);font-weight:500}
+.map .here{fill:var(--bad)}.map .ring{fill:none;stroke:var(--bad);stroke-width:1.5;animation:ring 2s infinite}
+@keyframes ring{0%{r:6;opacity:.8}100%{r:18;opacity:0}}
+.map-foot{padding:14px 16px;border-top:1px solid var(--line);display:grid;gap:10px}
+.gps-txt{font-size:14px;color:var(--ink-2);line-height:1.4}.gps-txt b{color:var(--ink)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px}.kv div{background:var(--paper-3);border-radius:10px;padding:10px 12px}.kv .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700}.kv .v{font-size:15px;font-weight:700;margin-top:2px}
+.links{display:flex;gap:8px;flex-wrap:wrap}.lnk{display:inline-flex;align-items:center;padding:8px 11px;border-radius:10px;border:1.5px solid var(--line-2);font-size:13px;font-weight:700;text-decoration:none}
+
+/* reservas */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media (max-width:420px){.grid2{grid-template-columns:1fr}}
+.res{padding:14px;background:var(--paper-2);border:1.5px solid var(--line);border-radius:14px}.res .k{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}.res .v{font-size:18px;font-weight:700;margin-top:4px}.res .s{font-size:13.5px;color:var(--ink-2);margin-top:3px;line-height:1.4}
+.check{list-style:none;margin:0;padding:0}.check li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line);font-size:15.5px}.check li:first-child{border-top:0}
+.check input{appearance:none;width:24px;height:24px;border:2px solid var(--ink-3);border-radius:8px;flex:0 0 24px;display:grid;place-items:center}.check input:checked{background:var(--ink);border-color:var(--ink)}.check input:checked:after{content:"";width:6px;height:11px;border:solid var(--paper);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}.check input:checked+span{color:var(--ink-3);text-decoration:line-through}
+.gl{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gl div{padding:10px 12px;border-radius:12px;background:var(--paper-2);border:1.5px solid var(--line)}.gl .w{font-weight:800;font-size:14.5px}.gl .m{font-size:13px;color:var(--ink-2);margin-top:2px}
+.foot{margin-top:36px;font-size:12px;color:var(--ink-3);text-align:center;line-height:1.5}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:11px 16px;border-radius:12px;font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:all .25s var(--ease);z-index:50}.toast.show{opacity:1;transform:translateX(-50%)}
+
+/* ===== SVG scene styling & animation ===== */
+.sc text{font-family:Inter,sans-serif;font-weight:700}
+.sc .ground{fill:var(--paper-4)}
+.sc .plat{fill:#D8D1C3}.sc .plat-edge{fill:#F1EDE4}
+.sc .car{fill:#F7F5F0;stroke:#2B2F3A;stroke-width:1.6}
+.sc .car.dim{opacity:.45}
+.sc .car.hi{fill:#FFF3D1;stroke:var(--gold);stroke-width:2.4}
+.sc .win{fill:#B9CBE0}.sc .door{fill:#2B2F3A;opacity:.85}
+.sc .wheel{fill:#2B2F3A}
+.sc .cls{font-size:22px;fill:#2B2F3A}
+.sc .lab{font-size:16px;fill:var(--ink-2);font-weight:600}
+.sc .lab.b{font-weight:800;fill:var(--ink)}
+.sc .bag{fill:var(--gold);stroke:#7A5718;stroke-width:1}
+.sc .bag.s{fill:#C9A45A}
+.sc .rack{fill:none;stroke:#2B2F3A;stroke-width:1.4;stroke-dasharray:3 2}
+.sc .you{fill:var(--ink)}
+.sc .seat{fill:#CBB89A}
+.sc .arrow{fill:none;stroke:var(--gold);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sc .arrowhead{fill:var(--gold)}
+.sc .sign-blue{fill:var(--sbb)}.sc .sign-txt{fill:#fff;font-size:30px;font-weight:800}
+.sc .sign-sm{fill:#fff;font-size:12px;letter-spacing:.08em;font-weight:700}
+.sc .board{fill:#1B2A5B}.sc .board-txt{fill:#fff;font-size:15px;font-family:"JetBrains Mono",monospace;font-weight:600}.sc .board-txt.y{fill:#FFD54A}
+.sc .bus{fill:var(--post);stroke:#8A6D00;stroke-width:1.6}
+.sc .bay{fill:#fff;stroke:var(--ink-2);stroke-width:1.2}.sc .bay.hi{fill:var(--post);stroke:#8A6D00;stroke-width:2}
+.sc .bay-t{font-size:18px;fill:var(--ink);font-weight:800}
+.sc .stop{fill:var(--paper-2);stroke:var(--ink);stroke-width:2}
+.sc .stop.off{fill:var(--bad);stroke:var(--bad)}.sc .stop.prep{fill:var(--gold);stroke:var(--gold)}
+.sc .stop.skip{stroke:var(--ink-3);stroke-width:1.4}
+.sc .line{stroke:var(--ink-3);stroke-width:3;stroke-linecap:round}
+.sc .st-lab{font-size:14px;fill:var(--ink-2);font-weight:600}.sc .st-lab.b{fill:var(--ink);font-weight:800;font-size:15px}
+.sc .st-lab.bad{fill:var(--bad);font-weight:800}
+.sc .st-lab.gold{fill:#8A6414;font-weight:800}
+.sc .lvl{fill:#fff;stroke:var(--line-2);stroke-width:1.5}
+.sc .elev{fill:var(--gold);}
+.sc .bobcar{fill:#F4D96B;stroke:#2B2F3A;stroke-width:1.6}.sc .bobcar.g{fill:#8FD0A4}
+.sc .tag{font-size:14px;font-weight:800}
+/* animations: run when .play is on the card (IntersectionObserver) */
+.sc .train-in{transform:translateX(120%)}
+.play .sc .train-in{animation:trainin 2.4s var(--ease) forwards}
+@keyframes trainin{0%{transform:translateX(120%)}100%{transform:translateX(0)}}
+.sc .door-open{transform:scaleX(1);transform-box:fill-box;transform-origin:left}
+.play .sc .door-open{animation:dooropen .6s 2.6s var(--ease) forwards}
+@keyframes dooropen{to{transform:scaleX(.15)}}
+.sc .bag-move{opacity:0}
+.play .sc .bag-move{animation:bagmove 1.4s 3.2s var(--ease) forwards}
+@keyframes bagmove{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:1;transform:translate(var(--dx),var(--dy))}}
+.sc .fade-in{opacity:0}.play .sc .fade-in{animation:fadein .6s var(--d,0s) forwards}
+@keyframes fadein{to{opacity:1}}
+.sc .pulse{animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.sc .split-a{transform:translateX(0)}.sc .split-b{transform:translateX(0)}
+.play .sc .split-a{animation:splita 2.2s 1.2s var(--ease) forwards}
+.play .sc .split-b{animation:splitb 2.2s 1.2s var(--ease) forwards}
+@keyframes splita{to{transform:translate(170px,-30px)}}
+@keyframes splitb{to{transform:translate(90px,34px)}}
+.sc .bus-in{transform:translateX(-120%)}.play .sc .bus-in{animation:busin 2.2s var(--ease) forwards}
+@keyframes busin{to{transform:translateX(0)}}
+.sc .lift{transform:translateY(0)}.play .sc .lift{animation:lift 2s 1s var(--ease) forwards}
+@keyframes lift{to{transform:translateY(-62px)}}
+.sc .flip{opacity:0}.play .sc .flip{animation:fadein .4s 1.2s forwards}
+@media (prefers-reduced-motion:reduce){.play .sc *{animation-duration:.01s !important;animation-delay:0s !important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div><div class="eyebrow">Segunda · 02 nov · dia 6</div><div class="t2">Annecy → Grindelwald</div></div>
+    <div class="clock mono"><div><span class="hm" id="hm">--:--</span><span class="s" id="ss"></span></div><div class="tz">Hora suíça</div></div>
+  </div>
+  <div class="rail"><i id="rail"></i></div>
+</header>
+
+<main class="wrap">
+  <section class="now" id="now"></section>
+  <div class="chips" id="chips"></div>
+
+  <section class="sec">
+    <div class="sec-h"><div class="eyebrow">O dia inteiro</div><h2>Um passo de cada vez</h2></div>
+    <div id="moments"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><div class="eyebrow">Posição</div><h2>Onde vocês estão</h2></div>
+    <div class="card map">
+      <svg id="map" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="map-foot">
+        <div class="gps-txt" id="gpsTxt">Toque em <b>Ativar GPS</b> e permita a localização. A partir daí: o ponto vermelho é vocês, a seta no topo aponta para a próxima estação, o celular <b>vibra</b> na hora de pegar as malas e na hora de descer, e o passo avança sozinho.</div>
+        <button class="btn primary" id="gpsBtn">Ativar GPS</button>
+        <div class="kv" id="gpsKv" style="display:none"><div><div class="k">Mais perto de</div><div class="v" id="kvNear">—</div></div><div><div class="k">Na rota?</div><div class="v" id="kvRoute">—</div></div></div>
+        <div class="links" id="mapLinks"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><div class="eyebrow">Na mão</div><h2>Reservas e contatos</h2></div>
+    <div class="grid2">
+      <div class="res"><div class="k">Bilhetes de trem</div><div class="v">App SBB Mobile</div><div class="s">Nominais. Mostrar com o <b>Half Fare Card</b> e o passaporte. Cobrem tudo: IR 90, GoldenPass, ônibus 105 e BOB.</div></div>
+      <div class="res"><div class="k">GoldenPass · Prestige</div><div class="v mono">1233940-1</div><div class="s">Carro <b>10</b> · assentos <b>12</b> e <b>18</b>. Sem troca nem reembolso.</div></div>
+      <div class="res"><div class="k">Transfer</div><div class="v">08:30 · confirmado</div><div class="s">€160–180 em dinheiro ao motorista. Destino: <b>Gare CFF Genève-Aéroport</b>.</div></div>
+      <div class="res"><div class="k">Hotel</div><div class="v">Bergwelt Grindelwald</div><div class="s">Bergwelt 4 · Booking <span class="mono">6283.062.303</span> · PIN <span class="mono">5047</span><br><a href="tel:+41338548585"><b>+41 33 854 85 85</b></a> · shuttle sob pedido</div></div>
+      <div class="res"><div class="k">Ajuda SBB (inglês)</div><div class="v"><a href="tel:+41848446688">0848 44 66 88</a></div><div class="s">Ou qualquer funcionário de colete vermelho na estação.</div></div>
+      <div class="res"><div class="k">Táxi Grindelwald</div><div class="v">Na saída da estação</div><div class="s">~CHF 15–20 até o hotel.</div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><div class="eyebrow">Hoje à noite</div><h2>Checklist</h2></div>
+    <div class="card" style="padding:4px 16px"><ul class="check" id="check"></ul></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><div class="eyebrow">Nas placas</div><h2>Alemão e francês</h2></div>
+    <div class="gl" id="gloss"></div>
+  </section>
+
+  <div class="foot">Horários conferidos no sistema oficial suíço (SBB) para 02.11.2026. Na dúvida, o painel da estação manda.</div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= dados ================= */
+const TZ='Europe/Zurich',DAY='2026-11-02';
+const mins=h=>{const[a,b]=h.split(':').map(Number);return a*60+b};
+const pad=n=>String(n).padStart(2,'0');
+const fmtDur=m=>{m=Math.max(0,Math.round(m));const h=Math.floor(m/60),r=m%60;return h?`${h}h${pad(r)}`:`${r} min`};
+
+/* ================= cenas SVG ================= */
+const S={};
+/* trem lateral chegando na plataforma; cars: [{cls:'2'|'1'|'10'|'P',hi:bool,label}] */
+S.train=function({cars,sign,signK='Voie',board,cap,platLabel}){
+  const W=600,H=190;const cw=96,gap=6,x0=W-(cars.length*(cw+gap))-20;
+  let g='';
+  cars.forEach((c,i)=>{const x=x0+i*(cw+gap);
+    g+=`<g><rect class="car ${c.hi?'hi':'dim'}" x="${x}" y="78" width="${cw}" height="52" rx="8"/>
+      <rect class="win" x="${x+12}" y="88" width="18" height="14" rx="2"/><rect class="win" x="${x+36}" y="88" width="18" height="14" rx="2"/><rect class="win" x="${x+66}" y="88" width="18" height="14" rx="2"/>
+      <rect class="door ${c.hi?'door-open':''}" x="${x+4}" y="86" width="7" height="42" rx="1"/>
+      <circle class="wheel" cx="${x+18}" cy="134" r="5"/><circle class="wheel" cx="${x+cw-18}" cy="134" r="5"/>
+      <text class="cls" x="${x+cw/2}" y="122" text-anchor="middle">${c.cls}</text>
+      ${c.label?`<text class="lab b fade-in" style="--d:2.8s" x="${x+cw/2}" y="72" text-anchor="middle">${c.label}</text>`:''}
+      ${c.hi?`<g class="fade-in" style="--d:3s"><path class="arrow" d="M${x+8} 150 l0 -14"/><path class="arrowhead" d="M${x+3} 142 l5 -8 l5 8z"/><text class="lab b" x="${x+8}" y="166" text-anchor="middle">entrar aqui</text></g>`:''}
+    </g>`;
+  });
+  return `<svg class="sc" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <rect class="ground" x="0" y="140" width="${W}" height="6"/>
+    <rect class="plat" x="0" y="146" width="${W}" height="30"/><rect class="plat-edge" x="0" y="146" width="${W}" height="3"/>
+    ${sign?`<g><rect class="sign-blue" x="18" y="6" width="80" height="54" rx="6"/><text class="sign-sm" x="58" y="22" text-anchor="middle">${signK.toUpperCase()}</text><text class="sign-txt" x="58" y="50" text-anchor="middle">${sign}</text></g>`:''}
+    ${board?`<g class="flip"><rect class="board" x="110" y="6" width="470" height="54" rx="6"/><text class="board-txt y" x="124" y="29">${board[0]}</text><text class="board-txt" x="124" y="50">${board[1]}</text><text class="board-txt y" x="566" y="50" text-anchor="end">${board[2]}</text></g>`:''}
+    <g class="train-in">${g}</g>
+    ${platLabel?`<text class="lab" x="20" y="166">${platLabel}</text>`:''}
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* corte do vagão: onde ficam as malas */
+S.cutaway=function({deck='lower',rack='end',cap,title}){
+  const W=600,H=200;
+  const rackX=rack==='end'?60:300;
+  const bags=[[0,0,'l'],[26,0,'l'],[52,0,'l'],[8,-18,'s'],[34,-18,'s'],[60,-18,'s']];
+  const bagsSvg=bags.map(([dx,dy,t],i)=>`<rect class="bag ${t==='s'?'s':''} bag-move" style="--dx:${rackX-400+dx}px;--dy:${dy}px;animation-delay:${3.2+i*.15}s" x="400" y="${t==='s'?128:140}" width="${t==='s'?16:22}" height="${t==='s'?12:18}" rx="3"/>`).join('');
+  return `<svg class="sc" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <text class="lab b" x="20" y="22">${title||'Dentro do vagão'}</text>
+    <rect class="car hi" x="20" y="36" width="560" height="134" rx="10"/>
+    ${deck==='lower'?`<line x1="20" y1="70" x2="580" y2="70" stroke="#2B2F3A" stroke-width="1.4" stroke-dasharray="4 3"/><text class="lab" x="300" y="58" text-anchor="middle">andar de cima — não precisam subir</text>`:''}
+    <g>${[0,1,2,3,4].map(i=>`<rect class="seat" x="${150+i*46}" y="124" width="22" height="30" rx="3"/><rect class="seat" x="${150+i*46+24}" y="124" width="16" height="30" rx="3"/>`).join('')}</g>
+    <rect class="door" x="390" y="110" width="36" height="58" rx="2" opacity=".25"/><text class="lab" x="408" y="186" text-anchor="middle">porta</text>
+    <rect class="rack" x="${rackX}" y="112" width="86" height="52" rx="4"/>
+    <text class="lab b" x="${rackX+43}" y="${rack==='end'?184:184}" text-anchor="middle">${rack==='end'?'porta-malas na ponta':'porta-malas na entrada'}</text>
+    ${bagsSvg}
+    <g class="fade-in" style="--d:4.6s"><circle class="you" cx="206" cy="118" r="7"/><circle class="you" cx="252" cy="118" r="7"/><text class="lab b" x="229" y="104" text-anchor="middle">vocês</text></g>
+    <g class="fade-in" style="--d:4.8s"><path class="arrow" d="M${rackX+90} 138 C ${rackX+130} 138, 160 138, 196 128"/></g>
+    <text class="lab" x="330" y="92" text-anchor="middle">${deck==='lower'?'andar de baixo · sentem onde enxerguem as malas':'carro 10 · assentos 12 e 18'}</text>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* fita de paradas */
+S.stops=function({stops,prep,off,cap,dur}){
+  const W=600,n=stops.length,x0=64,x1=536,step=(x1-x0)/(n-1);
+  let g=`<line class="line" x1="${x0}" y1="64" x2="${x1}" y2="64"/>`;
+  stops.forEach((s,i)=>{const x=x0+i*step;const cls=i===off?'off':i===prep?'prep':(i<off?'':'skip');
+    g+=`<circle class="stop ${cls}" cx="${x}" cy="64" r="${i===off?10:i===prep?9:5}"/>`;
+    const up=i%2===0;const y=up?44:94;
+    const anc=i===0?'start':i===n-1?'end':'middle';const xx=i===0?x-40:i===n-1?x+40:x;
+    g+=`<text class="st-lab ${i===off?'bad':i===prep?'gold':''} ${i===off||i===prep?'b':''}" x="${xx}" y="${y}" text-anchor="${anc}">${s}</text>`;
+    if(i===off)g+=`<text class="st-lab bad" x="${xx}" y="142" text-anchor="${anc}">▼ DESCER AQUI</text>`;
+    if(i===prep)g+=`<text class="st-lab gold" x="${x}" y="124" text-anchor="middle">▲ pegar as malas</text>`;
+  });
+  g+=`<g class="fade-in" style="--d:.4s"><circle class="pulse" cx="${x0}" cy="64" r="6" fill="var(--ink)"/></g>`;
+  return `<svg class="sc" viewBox="0 0 ${W} 150" xmlns="http://www.w3.org/2000/svg">${g}${dur?`<text class="lab" x="300" y="18" text-anchor="middle">${dur}</text>`:''}</svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* Montreux: dois níveis + elevador */
+S.levels=function({cap}){
+  return `<svg class="sc" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+    <rect class="lvl" x="20" y="130" width="400" height="60" rx="8"/><text class="lab b" x="36" y="152">NÍVEL DE BAIXO · trens SBB</text>
+    <g><rect class="sign-blue" x="36" y="160" width="40" height="22" rx="4"/><text class="sign-txt" style="font-size:20px" x="56" y="176" text-anchor="middle">3</text><text class="lab" x="84" y="176">vocês chegam · 12:09</text></g>
+    <rect class="lvl" x="20" y="30" width="400" height="60" rx="8"/><text class="lab b" x="36" y="52">NÍVEL DE CIMA · GoldenPass (MOB)</text>
+    <g><rect x="36" y="60" width="40" height="22" rx="4" fill="#F4D27A"/><text style="font-size:20px;fill:#111" x="56" y="76" text-anchor="middle">5</text><text class="lab" x="84" y="76">GoldenPass · 12:32</text></g>
+    <rect x="470" y="30" width="60" height="160" rx="8" fill="#fff" stroke="var(--line-2)" stroke-width="1.5"/>
+    <text class="lab b" x="500" y="208" text-anchor="middle">ELEVADOR</text>
+    <g class="lift"><rect class="elev" x="478" y="130" width="44" height="52" rx="5"/><circle cx="492" cy="150" r="5" fill="#fff"/><circle cx="508" cy="150" r="5" fill="#fff"/><rect x="484" y="160" width="12" height="14" rx="2" fill="#fff"/><rect x="500" y="160" width="12" height="14" rx="2" fill="#fff"/></g>
+    <path class="arrow" d="M300 160 L470 160"/><path class="arrowhead" d="M466 154 l8 6 l-8 6z"/>
+    <path class="arrow fade-in" style="--d:2.8s" d="M470 60 L430 60"/><path class="arrowhead fade-in" style="--d:2.8s" d="M434 54 l-8 6 l8 6z"/>
+    <text class="lab" x="300" y="118" text-anchor="middle">placas: MOB · GoldenPass · Voies 5–7</text>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* praça dos ônibus Interlaken West */
+S.plaza=function({cap}){
+  const bays='ABCDEFGH'.split('');
+  return `<svg class="sc" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="20" width="520" height="54" rx="8" fill="#fff" stroke="var(--line-2)" stroke-width="1.5"/>
+    <text class="lab b" x="300" y="42" text-anchor="middle">ESTAÇÃO INTERLAKEN WEST</text><text class="lab" x="300" y="60" text-anchor="middle">vocês saem pela frente (saída principal)</text>
+    <path class="arrow" d="M300 76 L300 108"/><path class="arrowhead" d="M294 104 l6 8 l6 -8z"/>
+    <text class="lab b" x="300" y="128" text-anchor="middle">BAHNHOFPLATZ · praça dos ônibus</text>
+    ${bays.map((b,i)=>`<rect class="bay ${b==='E'?'hi':''}" x="${50+i*64}" y="140" width="52" height="40" rx="6"/><text class="bay-t" x="${76+i*64}" y="165" text-anchor="middle">${b}</text>`).join('')}
+    <g class="bus-in"><rect class="bus" x="286" y="186" width="90" height="26" rx="6"/><rect x="294" y="191" width="14" height="10" rx="2" fill="#fff" opacity=".8"/><rect x="312" y="191" width="14" height="10" rx="2" fill="#fff" opacity=".8"/><rect x="330" y="191" width="14" height="10" rx="2" fill="#fff" opacity=".8"/><text class="tag" x="362" y="199" text-anchor="middle">105</text></g>
+    <text class="lab b fade-in" style="--d:2.2s" x="560" y="206" text-anchor="end">← ônibus amarelo 105</text>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* ônibus corte */
+S.bus=function({cap}){
+  return `<svg class="sc" viewBox="0 0 600 170" xmlns="http://www.w3.org/2000/svg">
+    <rect class="bus" x="40" y="40" width="520" height="90" rx="12"/>
+    ${[0,1,2,3,4,5,6].map(i=>`<rect x="${70+i*68}" y="52" width="40" height="22" rx="3" fill="#fff" opacity=".8"/>`).join('')}
+    <rect x="52" y="86" width="26" height="42" rx="2" fill="#2B2F3A" opacity=".3"/><text class="lab" x="65" y="150" text-anchor="middle">entrar</text>
+    <rect x="300" y="86" width="40" height="42" rx="2" fill="#2B2F3A" opacity=".3"/><text class="lab b" x="330" y="150" text-anchor="end">porta do meio</text>
+    <rect class="rack" x="348" y="90" width="80" height="36" rx="4"/><text class="lab b" x="350" y="150" text-anchor="start">← vão das malas</text>
+    ${[0,1,2].map(i=>`<rect class="bag bag-move" style="--dx:${288+i*26-70}px;--dy:0px;animation-delay:${1+i*.2}s" x="70" y="100" width="22" height="18" rx="3"/>`).join('')}
+    <circle class="wheel" cx="110" cy="132" r="10"/><circle class="wheel" cx="490" cy="132" r="10"/>
+    <text class="tag" x="520" y="70" text-anchor="middle" style="font-size:20px">105</text>
+    <g class="fade-in" style="--d:2s"><circle class="you" cx="470" cy="104" r="7"/><circle class="you" cx="500" cy="104" r="7"/><text class="lab b" x="485" y="88" text-anchor="middle">vocês</text></g>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* BOB: trem que se divide */
+S.split=function({cap}){
+  const car=(x,y,g,txt)=>`<rect class="bobcar ${g?'g':''}" x="${x}" y="${y}" width="112" height="40" rx="6"/><text class="tag" style="font-size:12px" x="${x+56}" y="${y+25}" text-anchor="middle">${txt}</text>`;
+  return `<svg class="sc" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg">
+    <text class="lab b" x="20" y="26">Em Wilderswil o trem é um só…</text>
+    <text class="lab" x="20" y="48">…em Zweilütschinen ele se divide.</text>
+    <line class="line" x1="20" y1="130" x2="300" y2="130"/><line class="line" x1="300" y1="130" x2="580" y2="90"/><line class="line" x1="300" y1="130" x2="580" y2="170"/>
+    <circle class="stop" cx="300" cy="130" r="7"/><text class="st-lab b" x="300" y="200" text-anchor="middle">Zweilütschinen</text>
+    <g class="split-a">${car(28,106,false,'LAUTERBRUNNEN')}${car(144,106,false,'LAUTERBRUNNEN')}</g>
+    <g class="split-b">${car(260,106,true,'GRINDELWALD')}${car(376,106,true,'GRINDELWALD')}</g>
+    <text class="st-lab" x="580" y="76" text-anchor="end">→ Lauterbrunnen ✗</text>
+    <text class="st-lab b" x="580" y="196" text-anchor="end">→ Grindelwald ✓</text>
+    <g class="fade-in" style="--d:3.6s"><text class="lab b" x="300" y="240" text-anchor="middle" fill="var(--bad)">Entrem só num vagão escrito GRINDELWALD</text></g>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* carro / transfer */
+S.car=function({cap}){
+  return `<svg class="sc" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+    <rect class="ground" x="0" y="118" width="600" height="6"/>
+    <text class="lab b" x="70" y="40" text-anchor="middle">RIVAGE</text><text class="lab" x="70" y="58" text-anchor="middle">08:30</text>
+    <text class="lab b" x="580" y="40" text-anchor="end">GARE CFF</text><text class="lab" x="580" y="58" text-anchor="end">Genève-Aéroport · ~09:45</text>
+    <line class="road" x1="90" y1="100" x2="490" y2="100" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="6 6"/>
+    <text class="lab" x="290" y="86" text-anchor="middle">fronteira França → Suíça · passaportes à mão</text>
+    <g class="bus-in"><rect class="car hi" x="110" y="78" width="110" height="34" rx="10"/><rect class="win" x="126" y="84" width="24" height="12" rx="2"/><rect class="win" x="160" y="84" width="24" height="12" rx="2"/><circle class="wheel" cx="135" cy="116" r="7"/><circle class="wheel" cx="195" cy="116" r="7"/><rect class="bag" x="226" y="94" width="14" height="12" rx="2"/><rect class="bag" x="226" y="80" width="14" height="12" rx="2"/></g>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* placa/caminho dentro do terminal GVA */
+S.gva=function({cap}){
+  return `<svg class="sc" viewBox="0 0 600 190" xmlns="http://www.w3.org/2000/svg">
+    <rect class="lvl" x="20" y="20" width="560" height="56" rx="8"/><text class="lab b" x="300" y="44" text-anchor="middle">TERMINAL · nível das chegadas</text><text class="lab" x="300" y="62" text-anchor="middle">o motorista deixa vocês aqui · carrinhos de bagagem grátis</text>
+    <rect class="lvl" x="20" y="124" width="560" height="56" rx="8"/><text class="lab b" x="300" y="148" text-anchor="middle">GARE CFF · nível dos trens</text>
+    <g><rect class="sign-blue" x="36" y="154" width="40" height="22" rx="4"/><text class="sign-txt" style="font-size:20px" x="56" y="170" text-anchor="middle">3</text><text class="lab" x="84" y="170">IR 90 · 10:55</text></g>
+    <g class="lift"><rect class="elev" x="480" y="94" width="44" height="26" rx="5"/><text style="font-size:12px;fill:#fff;font-weight:800" x="502" y="111" text-anchor="middle">ELEV.</text></g>
+    <path class="arrow" d="M300 80 L300 118"/><path class="arrowhead" d="M294 114 l6 8 l6 -8z"/>
+    <text class="lab b" x="300" y="104" text-anchor="middle">siga a placa “Gare CFF · Bahnhof”</text>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+/* chegada no hotel */
+S.hotel=function({cap}){
+  return `<svg class="sc" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg">
+    <rect class="ground" x="0" y="118" width="600" height="6"/>
+    <rect class="lvl" x="30" y="60" width="150" height="58" rx="8"/><text class="lab b" x="105" y="84" text-anchor="middle">GRINDELWALD</text><text class="lab" x="105" y="102" text-anchor="middle">estação · 16:40</text>
+    <path d="M400 118 L400 70 L470 34 L540 70 L540 118 Z" fill="#fff" stroke="var(--line-2)" stroke-width="1.5"/><text class="lab b" x="470" y="100" text-anchor="middle">BERGWELT</text>
+    <line x1="180" y1="100" x2="400" y2="100" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="6 6"/>
+    <g class="bus-in"><rect class="car hi" x="220" y="80" width="80" height="26" rx="8"/><circle class="wheel" cx="238" cy="110" r="6"/><circle class="wheel" cx="282" cy="110" r="6"/></g>
+    <text class="lab" x="290" y="40" text-anchor="middle">shuttle do hotel ou táxi · 3 min · subida</text>
+  </svg>${cap?`<div class="cap">${cap}</div>`:''}`;
+};
+
+/* ================= momentos ================= */
+/* cada momento = uma tela. t = quando começa (para o relógio). off/prep = instruções explícitas. */
+const M=[
+ {id:'m0',t:'08:20',end:'09:45',stage:'Transfer',cmd:'Entrar no transfer. Dizer o destino.',where:'Porta do Rivage · 08:30',plat:null,
+  vis:()=>S.car({cap:'Carro até a estação dentro do aeroporto · 1h a 1h20'}),
+  pts:[['say','Ao motorista: <b>“Gare CFF de Genève-Aéroport, s’il vous plaît.”</b> (é a estação de trem dentro do aeroporto, lado suíço)'],['bag','As 6 malas vão no porta-malas do carro. Mochilas com vocês: passaportes, celulares, dinheiro do transfer.'],['eye','Pagar €160–180 em dinheiro na chegada.']],
+  planb:'Trânsito e atraso? Só vira problema se passar das 10:40. Avisem o motorista que o trem é às 10:55.'},
+ {id:'m1',t:'09:45',end:'10:40',stage:'Transfer',cmd:'Descer até os trens. Achar a plataforma 3.',where:'Genève-Aéroport · chegada ~09:45',plat:['3','Voie','sbb'],
+  vis:()=>S.gva({cap:'Do terminal, um nível para baixo. Elevador com as malas.'}),
+  pts:[['eye','Siga a placa <span class="sign blue">Gare CFF · Bahnhof</span>. Pegue um <b>carrinho de bagagem</b> (grátis) e leve até a plataforma pelo elevador.'],['eye','No painel azul: <b>10:55 · IR 90 · Brig · Voie 3</b>. “Brig” é o destino final; Montreux é parada no meio.'],['no','Nada para comprar nem validar: bilhetes no app SBB.']],
+  say:'Sobra mais de 1 hora. Café, banheiro, e às <b>10:45</b> os dois na plataforma 3 com tudo.',
+  planb:'Painel sem “IR 90 10:55”? Procure qualquer trem para <b>Brig</b> ou <b>Montreux</b> e pergunte: “Montreux?”.'},
+ {id:'m2',t:'10:40',end:'10:55',stage:'IR 90',cmd:'Entrar num vagão com “2”. Andar de baixo.',where:'Voie 3 · trem IR 90 · 10:55',plat:['3','Voie','sbb'],
+  vis:()=>S.train({cars:[{cls:'1'},{cls:'1'},{cls:'2',hi:true,label:'qualquer “2”'},{cls:'2',hi:true},{cls:'2',hi:true}],sign:'3',board:['10:55  IR 90','Brig  ·  via Lausanne – Montreux','3'],platLabel:'Voie 3',cap:'O trem para no mesmo nível. Vagões com “2” na porta são os seus.'}),
+  pts:[['eye','Número <b>2</b> grande ao lado da porta = 2ª classe. Qualquer um serve, não há lugar marcado.'],['bag','<b>Malas grandes:</b> no porta-malas na <b>ponta do vagão</b>, logo ao entrar. <b>Mala de bordo e mochila:</b> com vocês no assento.'],['eye','Trem de dois andares: fiquem no <b>andar de baixo</b>, perto das malas.']],
+  planb:'Perderam o 10:55? IR 95 às <b>11:14</b>, mesma voie 3, chega a Montreux 12:36 — depois do GoldenPass. Aí: fiquem no IR 95 até <b>Visp</b> (13:50), IC 8 → Spiez 14:21, IC 61 → Interlaken West 14:53. O app SBB mostra tudo: destino “Grindelwald”.'},
+ {id:'m3',t:'10:55',end:'12:09',stage:'IR 90',cmd:'Relaxar 1h14. Descer em Montreux, a 6ª parada.',where:'A bordo do IR 90 · chega 12:09',plat:null,
+  vis:()=>S.cutaway({deck:'lower',rack:'end',title:'Onde fica cada coisa no vagão',cap:'Grandes na ponta · pequenas com vocês · sentados de olho nelas'})+S.stops({stops:['Gen.-Aéroport','Genève','Nyon','Morges','Lausanne','Vevey','Montreux'],prep:5,off:6,dur:'1h14 · anúncio: “Prochain arrêt: Montreux”'}),
+  pts:[['ear','Quando anunciarem <b>“Vevey”</b> (12:03): levantem, peguem as <b>3 malas grandes na ponta</b> e fiquem com as 6 perto da porta.'],['no','<b>Descer em Montreux (12:09), voie 3.</b> A parada dura 1 minuto — por isso as malas já prontas.'],['eye','Lago Léman do lado direito depois de Lausanne.']],
+  planb:'Passaram de Montreux sem descer? Desçam na próxima (Aigle), voltem no primeiro trem (10 min). GoldenPass perdido → ver Plano B de Montreux.'},
+ {id:'m4',t:'12:09',end:'12:32',stage:'Montreux',cmd:'Elevador. Nível de cima. Voie 5.',where:'Montreux · 23 min para trocar',plat:['5','Voie','mob'],
+  vis:()=>S.levels({cap:'Os trens do GoldenPass ficam no andar de cima da mesma estação'}),
+  pts:[['eye','Na voie 3, siga a placa <span class="sign">MOB · GoldenPass</span>. Elevador (não escada) com as malas até o nível de cima.'],['eye','No painel: <b>12:32 · GoldenPass Express · Voie 5</b>. Destino pode dizer <i>Interlaken Ost</i> ou <i>Zweisimmen</i> — é o mesmo trem.'],['eye','Na plataforma, procurem o <b>carro 10</b> (número grande na lateral). Prestige = uma das pontas do trem.']],
+  say:'Reserva <b>1233940-1</b> · carro <b>10</b> · assentos <b>12</b> e <b>18</b>. Embarcar até 12:27.',
+  planb:'Perderam o 12:32? A reserva se perde, o bilhete não. <b>12:37 IR 95 (voie 3)</b> → Visp 13:50 → IC 8 → Spiez 14:21 → IC 61 → Interlaken West 14:53. Ou próximo GoldenPass às 14:32 (nova reserva).'},
+ {id:'m5',t:'12:32',end:'15:20',stage:'GoldenPass',cmd:'Malas na entrada do carro. Sentar. Champanhe.',where:'GoldenPass Express · carro 10 · 12 e 18',plat:['10','Carro','mob'],
+  vis:()=>S.train({cars:[{cls:'10',hi:true,label:'carro 10 · Prestige'},{cls:'11'},{cls:'12'},{cls:'13'}],sign:'5',signK:'Voie',board:['12:32  GoldenPass Express','Zweisimmen – Spiez – Interlaken','5'],platLabel:'Voie 5',cap:'O número do carro fica pintado na lateral, perto da porta'})+S.cutaway({deck:'upper',rack:'entrance',title:'No carro 10',cap:'Porta-malas logo na entrada · assentos elevados 12 e 18'}),
+  pts:[['bag','Ao entrar no carro 10: <b>malas grandes no porta-malas da entrada</b>. Mochila e mala de bordo: com vocês ou no bagageiro acima.'],['eye','O pessoal de bordo ajuda com as malas e serve à mesa: <b>Ladurée + taça de champanhe</b>.'],['no','Em <b>Zweisimmen</b> o trem troca de bitola com vocês dentro. <b>Não desçam.</b>']],
+  planb:'Não acharam o carro 10 na hora? Entrem em qualquer porta do GoldenPass e andem por dentro — o trem é contínuo.'},
+ {id:'m6',t:'15:20',end:'15:43',stage:'GoldenPass',cmd:'Depois de Spiez: pegar as 6 malas. Descer na última parada.',where:'Interlaken West · 15:43 · Gleis 2',plat:['2','Gleis','sbb'],
+  vis:()=>S.stops({stops:['Montreux','Montbovon','Château-d’Œx','Gstaad','Zweisimmen','Spiez','Interlaken West'],prep:5,off:6,dur:'3h11 · Interlaken West é o FIM da linha'}),
+  pts:[['ear','Quando o trem sair de <b>Spiez</b> (~15:20): peguem as malas grandes na entrada do carro e fiquem prontos.'],['no','<b>Descer em Interlaken West, 15:43.</b> É a última parada: todo mundo desce. Não existe “Interlaken Ost” hoje (obras).'],['eye','Ainda sentados, liguem para o hotel: <b>+41 33 854 85 85</b> — “shuttle at Grindelwald station, 16:40, Bergwelt, booking 6283062303”.']],
+  planb:'Trem atrasou? Tudo depois repete a cada 30 min. Nada a decidir — só seguir os passos abaixo no próximo horário.'},
+ {id:'m7',t:'15:43',end:'15:57',stage:'Ônibus',cmd:'Sair pela frente. Baia E. Ônibus amarelo 105.',where:'Interlaken West → praça · 14 min',plat:['E','Baia','post'],
+  vis:()=>S.plaza({cap:'As baias têm letras grandes. A sua é a E. O ônibus é amarelo, linha 105.'}),
+  pts:[['eye','Do Gleis 2, saída principal → praça na frente da estação (<b>Bahnhofplatz</b>). Baias <b>A a H</b>, a sua é a <span class="sign yel">E</span>.'],['eye','Ônibus <span class="sign yel">105</span>, destino <b>Gsteigwiler</b>, sai <b>15:57</b>. Entrem pela porta da frente.'],['say','Ao motorista: <b>“Wilderswil Bahnhof, bitte.”</b> Se pedir bilhete: mostrar o app SBB.']],
+  planb:'Perderam o 15:57? Próximo 105 às <b>16:27</b> (chegam 17:10 em Grindelwald). Ou qualquer ônibus para <b>Interlaken Ost</b> (102 baia D 15:59 · 108 baia B 16:08) e lá o BOB no Gleis 2B às 16:34.'},
+ {id:'m8',t:'15:57',end:'16:06',stage:'Ônibus',cmd:'9 minutos. Descer em “Wilderswil, Bahnhof”.',where:'Ônibus 105 · 15:57 → 16:06',plat:null,
+  vis:()=>S.bus({cap:'Malas grandes no vão perto da porta do meio · vocês sentados ao lado'})+S.stops({stops:['Interlaken West','(paradas)','Wilderswil, Bahnhof'],prep:1,off:2,dur:'9 min · a tela do ônibus mostra a próxima parada'}),
+  pts:[['bag','Malas grandes no <b>vão ao lado da porta do meio</b>. Sentem ali perto.'],['ear','Apertem o botão “Stop” quando a tela mostrar <b>Wilderswil, Bahnhof</b>. Desçam pela porta do meio com tudo.'],['eye','A estação de trem de Wilderswil fica <b>ao lado do ponto</b>, 1 minuto.']],
+  planb:'Passaram do ponto? Desçam na próxima e voltem a pé (vila pequena) — ou peçam ao motorista: “Bahnhof?”.'},
+ {id:'m9',t:'16:06',end:'16:10',stage:'BOB',cmd:'Gleis 2. Só vagão escrito GRINDELWALD.',where:'Wilderswil · trem BOB 16:10',plat:['2','Gleis','bob'],
+  vis:()=>S.split({cap:'O único truque do dia: metade do trem vai para outro vale'}),
+  pts:[['eye','Plataforma <span class="sign grn">Gleis 2</span>. O trem BOB (amarelo e verde) chega de Interlaken às <b>16:10</b> e para 1–2 min.'],['no','Cada vagão tem um letreiro na lateral: <b>LAUTERBRUNNEN</b> ou <b>GRINDELWALD</b>. Entrem <b>só</b> num <span class="sign grn">GRINDELWALD</span>.'],['say','Na dúvida, pergunte a qualquer pessoa na porta: <b>“Grindelwald?”</b>']],
+  planb:'Perderam o 16:10? O próximo é às <b>16:40</b>, mesmo Gleis 2 — chegam 17:10. Entraram no vagão errado? Troquem na 1ª parada (Zweilütschinen).'},
+ {id:'m10',t:'16:10',end:'16:40',stage:'BOB',cmd:'30 min. Não descer no “Terminal”. Descer no fim: Grindelwald.',where:'BOB · chega 16:40',plat:null,
+  vis:()=>S.stops({stops:['Wilderswil','Zweilütschinen','Lütschental','Burglauenen','Schwendi','Grind. Terminal','Grindelwald'],prep:4,off:6,dur:'30 min · fim da linha'}),
+  pts:[['bag','Malas grandes no porta-malas da entrada do vagão; pequenas com vocês.'],['no','A penúltima parada se chama <b>“Grindelwald Terminal”</b>. <b>Não é a sua.</b> Fiquem sentados.'],['ear','<b>Descer em “Grindelwald”, 16:40, a última.</b> O trem termina ali; todo mundo desce.']],
+  planb:'Desceram no Terminal por engano? O próximo trem segue para Grindelwald em 30 min, ou táxi (5 min).'},
+ {id:'m11',t:'16:40',end:'23:59',stage:'Hotel',cmd:'Shuttle ou táxi. Bergwelt.',where:'Grindelwald · Bergwelt 4',plat:null,
+  vis:()=>S.hotel({cap:'7 min a pé subindo — com 6 malas, vale o carro'}),
+  pts:[['eye','Shuttle do Bergwelt se tiverem ligado; senão, <b>táxi na saída da estação</b> (~CHF 15–20).'],['eye','Recepção: Booking <b>6283.062.303</b>, PIN <b>5047</b>. Eiger View King Room, 5 noites, café incluído.'],['eye','Spa e piscina. Amanhã: Jungfraujoch só com céu limpo.']],
+  planb:null}
+];
+const STAGES=['Transfer','IR 90','Montreux','GoldenPass','Ônibus','BOB','Hotel'];
+const CHECK=['Bilhetes abertos no app SBB (Genève-Aéroport → Grindelwald) e Half Fare Card no app','Reserva GoldenPass 1233940-1 salva (print/e-mail)','Passaportes e dinheiro do transfer na mochila, não na mala grande','Celulares carregados + power bank na mochila','Malas fechadas hoje à noite; só o necessário de manhã nas mochilas','Café às 07:30 · porta do Rivage às 08:20','Esta página aberta nos dois celulares · GPS ativado'];
+const GLOSS=[['Gleis · Voie','Plataforma — o número grande no painel azul'],['Abfahrt · Départ','Partida'],['Richtung','Sentido / destino'],['Ausgang · Sortie','Saída'],['Bahnhofplatz','Praça da estação (ônibus)'],['Ersatzbus · Bahnersatz','Ônibus substituto'],['Nächster Halt · Prochain arrêt','Próxima parada'],['Umsteigen','Trocar de trem'],['Bitte · Danke','Por favor · obrigado'],['Hilfe · Aide','Ajuda']];
+
+/* ================= geo ================= */
+const PTS={gva:[6.109,46.231],geneve:[6.142,46.210],nyon:[6.237,46.383],lausanne:[6.629,46.517],vevey:[6.843,46.462],montreux:[6.911,46.436],montbovon:[7.045,46.489],chateau:[7.137,46.475],gstaad:[7.287,46.473],zweisimmen:[7.374,46.555],erlenbach:[7.555,46.660],spiez:[7.680,46.686],iwest:[7.852,46.683],wilderswil:[7.864,46.665],zweil:[7.906,46.633],grindelwald:[8.041,46.624]};
+const XPTS={schwendi:[7.993,46.632],gterminal:[8.024,46.628],bergwelt:[8.045,46.626]};const ALL=Object.assign({},PTS,XPTS);
+
+const RAIL=Object.keys(PTS);
+const NAMES={gva:'Genève-Aéroport',geneve:'Genève',nyon:'Nyon',lausanne:'Lausanne',vevey:'Vevey',montreux:'Montreux',montbovon:'Montbovon',chateau:'Château-d’Œx',gstaad:'Gstaad',zweisimmen:'Zweisimmen',erlenbach:'Erlenbach',spiez:'Spiez',iwest:'Interlaken West',wilderswil:'Wilderswil',zweil:'Zweilütschinen',grindelwald:'Grindelwald'};
+Object.assign(NAMES,{schwendi:'Schwendi',gterminal:'Grindelwald Terminal',bergwelt:'Bergwelt'});
+const STAGE_PT={'Transfer':'gva','IR 90':'nyon','Montreux':'montreux','GoldenPass':'gstaad','Ônibus':'iwest','BOB':'zweil','Hotel':'grindelwald'};
+const NEXT_Q={'Transfer':['Gare+CFF+Gen%C3%A8ve-A%C3%A9roport','Genève-Aéroport'],'IR 90':['Gare+de+Montreux','Montreux'],'Montreux':['Gare+de+Montreux','Montreux'],'GoldenPass':['Interlaken+West+Bahnhof','Interlaken West'],'Ônibus':['Wilderswil+Bahnhof','Wilderswil'],'BOB':['Grindelwald+Bahnhof','Grindelwald'],'Hotel':['Bergwelt+Grindelwald+Alpine+Design+Resort','Bergwelt']};
+
+/* ================= util ================= */
+const $=s=>document.querySelector(s);
+function nowZ(){const p=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(new Date());const g=t=>p.find(x=>x.type===t).value;return{date:`${g('year')}-${g('month')}-${g('day')}`,h:+g('hour')%24,m:+g('minute'),s:+g('second')}}
+let store={};try{store=JSON.parse(localStorage.getItem('alpes-0211-v2')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('alpes-0211-v2',JSON.stringify(store))}catch(e){}}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1600)}
+
+/* momento atual */
+function autoIdx(){const n=nowZ();if(n.date<DAY)return -1;if(n.date>DAY)return M.length-1;const t=n.h*60+n.m;if(t<mins('08:20'))return -1;let i=0;M.forEach((m,k)=>{if(t>=mins(m.t))i=k});return i}
+function curIdx(){if(store.manualDate===DAY&&Number.isInteger(store.manual))return store.manual;return autoIdx()}
+function setManual(i){if(i==null){delete store.manual;delete store.manualDate}else{store.manual=i;store.manualDate=DAY}save();render()}
+
+/* ================= render ================= */
+function renderMoments(){
+  $('#moments').innerHTML=M.map((m,i)=>`<article class="mo" id="${m.id}">
+    <div class="hd"><div class="tm mono">${m.t}<small>${m.stage.toUpperCase()}</small></div><div><div class="cmd">${m.cmd}</div><div class="where">${m.where}</div></div></div>
+    <div class="vis">${m.vis()}</div>
+    <div class="bd">
+      <ul class="pts">${m.pts.map(([k,t])=>`<li><span class="i ${k}">${({say:'“',bag:'▣',eye:'👁',ear:'♪',no:'!'})[k]}</span><span>${t}</span></li>`).join('')}</ul>
+      ${m.say?`<div class="say">${m.say}</div>`:''}
+      ${m.planb?`<div class="planb"><b>Se der errado:</b> ${m.planb}</div>`:''}
+    </div>
+    <div class="mfoot"><button class="btn" data-here="${i}">Estamos aqui</button>${i<M.length-1?`<button class="btn ghost" data-here="${i+1}">Feito → próximo</button>`:''}</div>
+  </article>`).join('');
+  document.querySelectorAll('[data-here]').forEach(b=>b.addEventListener('click',()=>{setManual(+b.dataset.here);toast('Posição atualizada');const el=document.getElementById(M[+b.dataset.here].id);el.scrollIntoView({behavior:'smooth',block:'start'})}));
+  /* animações quando entram na tela */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('play')}}),{threshold:.35});
+  document.querySelectorAll('.mo').forEach(el=>io.observe(el));
+}
+function renderNow(){
+  const n=nowZ();const t=n.h*60+n.m+n.s/60;const i=curIdx();const a=autoIdx();const manual=store.manualDate===DAY&&Number.isInteger(store.manual);
+  let h='';
+  if(i<0){
+    const left=n.date<DAY?null:mins('08:30')-t;
+    h=`<div class="eyebrow">Agora</div><div class="big">Amanhã, 08:30, o transfer sai do Rivage.</div><div class="sub">Seis etapas, uma troca folgada em Montreux, e um único cuidado real: o vagão certo em Wilderswil. Tudo desenhado abaixo.</div>
+      <div class="row"><div class="cd"><div class="v mono">${left==null?'02 nov':fmtDur(left)}</div><div class="k">${left==null?'segunda-feira':'até o transfer'}</div></div><div class="plat sbb"><div class="n">3</div><div class="k">Voie · 10:55</div></div></div>
+      <div class="acts"><a class="btn primary" href="#m0">Ver o primeiro passo</a></div>`;
+  } else {
+    const m=M[i];const end=mins(m.end);const left=end-t;
+    const plat=m.plat?`<div class="plat ${m.plat[2]}"><div class="n">${m.plat[0]}</div><div class="k">${m.plat[1]}</div></div>`:'';
+    const nxt=M[i+1];
+    let alerts='';
+    if(manual&&a>i)alerts+=`<div class="alert warn"><b>Pelo relógio vocês já deveriam estar em: “${M[a].cmd}”.</b> Leia o “Se der errado” do passo atual — tudo repete a cada 30 min.</div>`;
+    if(gps.fix){const p=[gps.fix.lon,gps.fix.lat];const off=distToRoute(p);const nr=nearest(p);
+      if(off>3)alerts+=`<div class="alert warn"><b>GPS: vocês estão a ${off.toFixed(1)} km da rota.</b> Perguntem a alguém de uniforme: “Grindelwald?” e usem o app SBB com destino Grindelwald.</div>`;
+      else alerts+=`<div class="alert ok"><b>GPS confirma: na rota.</b> Mais perto de ${NAMES[nr.k]} (${nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km'}).</div>`}
+    const lq=LIVE_Q.find(q=>q.moments.includes(m.id));const lp=lq?`<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">${pillFor(lq.id)}</div>`:'';
+    h=`<div class="eyebrow">${manual?'Passo marcado por vocês':'Agora · pelo relógio'} · ${m.stage}</div><div class="big">${m.cmd}</div><div class="sub">${m.where}</div>${lp}${bigAlert?`<div class="bigalert ${bigAlert.kind}">${bigAlert.txt}</div>`:''}${compassHTML()}
+      <div class="row"><div class="cd"><div class="v mono">${fmtDur(left)}</div><div class="k">${i===M.length-1?'chegaram':'até '+(nxt?nxt.t:'')+' · '+(({m0:'chegada no aeroporto',m1:'partida do IR 90',m2:'partida',m3:'Montreux',m4:'partida do GoldenPass',m5:'Spiez',m6:'Interlaken West',m7:'partida do ônibus',m8:'Wilderswil',m9:'partida do BOB',m10:'Grindelwald'})[m.id]||'')}</div></div>${plat}</div>
+      ${alerts}
+      <div class="acts"><a class="btn primary" href="#${m.id}">Ver o desenho</a>${nxt?`<button class="btn" data-next="${i+1}">Feito → próximo</button>`:''}${manual?'<button class="btn" data-auto="1">Relógio</button>':''}</div>`;
+  }
+  $('#now').innerHTML=h;
+  $('#now').querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>{setManual(+b.dataset.next);toast('Próximo passo')}));
+  $('#now').querySelectorAll('[data-auto]').forEach(b=>b.addEventListener('click',()=>{setManual(null);toast('Seguindo o relógio')}));
+  M.forEach((m,k)=>{const el=document.getElementById(m.id);el.classList.toggle('active',k===i);el.classList.toggle('done',k<i)});
+}
+function renderChips(){
+  const i=curIdx();const manual=store.manualDate===DAY&&Number.isInteger(store.manual);const cur=i>=0?M[i].stage:null;
+  $('#chips').innerHTML=`<button class="chip auto ${!manual?'on':''}" data-s="auto">Relógio</button>`+STAGES.map(s=>`<button class="chip ${manual&&cur===s?'on':''}" data-s="${s}">${s}</button>`).join('');
+  $('#chips').querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.s==='auto')setManual(null);else setManual(M.findIndex(m=>m.stage===b.dataset.s))}));
+}
+
+/* mapa */
+const W=640,H=300,PAD=26,LON0=6.02,LON1=8.30,LAT0=46.16,LAT1=46.79;
+function proj([lon,lat]){const c=Math.cos(46.4*Math.PI/180);const xs=(LON1-LON0)*c,ys=LAT1-LAT0;const sc=Math.min((W-2*PAD)/xs,(H-2*PAD)/ys);return[PAD+(lon-LON0)*c*sc+((W-2*PAD)-xs*sc)/2,H-PAD-(lat-LAT0)*sc-((H-2*PAD)-ys*sc)/2]}
+const LEMAN=[[6.15,46.21],[6.17,46.29],[6.24,46.38],[6.34,46.46],[6.50,46.50],[6.63,46.51],[6.75,46.49],[6.84,46.46],[6.91,46.43],[6.93,46.40],[6.86,46.39],[6.80,46.39],[6.70,46.40],[6.59,46.40],[6.48,46.37],[6.40,46.36],[6.33,46.37],[6.25,46.30],[6.18,46.24]];
+const THUN=[[7.62,46.75],[7.66,46.74],[7.72,46.72],[7.78,46.70],[7.83,46.685],[7.82,46.67],[7.76,46.675],[7.70,46.69],[7.65,46.71],[7.62,46.73]];
+const BRIENZ=[[7.87,46.69],[7.93,46.71],[8.00,46.735],[8.04,46.75],[8.03,46.73],[7.97,46.715],[7.91,46.69],[7.87,46.68]];
+const poly=a=>a.map(p=>proj(p).map(v=>v.toFixed(1)).join(',')).join(' ');
+function renderMap(){
+  const i=curIdx();const stage=i>=0?M[i].stage:'Transfer';const seq=RAIL.indexOf(STAGE_PT[stage]);
+  let s=`<polygon class="lake" points="${poly(LEMAN)}"/><polygon class="lake" points="${poly(THUN)}"/><polygon class="lake" points="${poly(BRIENZ)}"/>`;
+  const [ax,ay]=proj([PTS.gva[0]+0.02,46.17]);s+=`<polyline class="road" points="${poly([PTS.gva,[PTS.gva[0]+0.02,46.17]])}"/><text class="lab small" x="${ax+8}" y="${ay+2}">↓ Annecy · transfer</text>`;
+  s+=`<polyline class="track" points="${poly(RAIL.map(k=>PTS[k]))}"/>`;
+  if(i>=0)s+=`<polyline class="track done" points="${poly(RAIL.slice(0,seq+1).map(k=>PTS[k]))}"/>`;
+  const labels={gva:[9,4,'start'],lausanne:[0,-10,'middle'],montreux:[9,13,'start'],gstaad:[0,15,'middle'],zweisimmen:[-7,-7,'end'],spiez:[-8,12,'end'],iwest:[2,-13,'end'],wilderswil:[-9,13,'end'],grindelwald:[9,4,'start']};
+  const hubs=['gva','montreux','iwest','wilderswil','grindelwald'];
+  for(const k of RAIL){if(!labels[k])continue;const[x,y]=proj(PTS[k]);const hub=hubs.includes(k);s+=`<circle class="stn" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${hub?4.5:2.6}"/><text class="lab ${hub?'':'small'}" x="${(x+labels[k][0]).toFixed(1)}" y="${(y+labels[k][1]).toFixed(1)}" text-anchor="${labels[k][2]}">${NAMES[k]}</text>`}
+  const here=gps.fix?proj([gps.fix.lon,gps.fix.lat]):proj(PTS[STAGE_PT[stage]]);
+  s+=`<circle class="ring" cx="${here[0].toFixed(1)}" cy="${here[1].toFixed(1)}" r="6"/><circle class="here" cx="${here[0].toFixed(1)}" cy="${here[1].toFixed(1)}" r="5.5"/><circle cx="${here[0].toFixed(1)}" cy="${here[1].toFixed(1)}" r="2" fill="#fff"/>`;
+  $('#map').innerHTML=s;
+  const [q,n]=NEXT_Q[stage];
+  $('#mapLinks').innerHTML=`<a class="lnk" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${q}&travelmode=walking">Google Maps → ${n}</a><a class="lnk" target="_blank" rel="noopener" href="https://www.sbb.ch/en/timetable?to=Grindelwald">SBB → Grindelwald</a>`;
+}
+
+/* GPS */
+const gps={fix:null,err:null};
+function distKm(a,b){const R=6371,dLat=(b[1]-a[1])*Math.PI/180,dLon=(b[0]-a[0])*Math.PI/180,l1=a[1]*Math.PI/180,l2=b[1]*Math.PI/180;const h=Math.sin(dLat/2)**2+Math.cos(l1)*Math.cos(l2)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+function distToRoute(p){const segs=[[[6.129,45.899],PTS.gva],...RAIL.slice(1).map((k,i)=>[PTS[RAIL[i]],PTS[k]])];const c=Math.cos(p[1]*Math.PI/180);const xy=([lon,lat])=>[(lon-p[0])*c*111.32,(lat-p[1])*110.57];let best=1e9;for(const[a,b]of segs){const A=xy(a),B=xy(b);const dx=B[0]-A[0],dy=B[1]-A[1];const l2=dx*dx+dy*dy;let t=l2?((-A[0])*dx+(-A[1])*dy)/l2:0;t=Math.max(0,Math.min(1,t));best=Math.min(best,Math.hypot(A[0]+t*dx,A[1]+t*dy))}return best}
+function nearest(p){let bk=null,bd=1e9;for(const k of RAIL){const d=distKm(p,PTS[k]);if(d<bd){bd=d;bk=k}}return{k:bk,d:bd}}
+function policyBlocked(){try{if(document.featurePolicy&&document.featurePolicy.allowsFeature)return !document.featurePolicy.allowsFeature('geolocation')}catch(e){}try{if(document.permissionsPolicy&&document.permissionsPolicy.allowsFeature)return !document.permissionsPolicy.allowsFeature('geolocation')}catch(e){}return false}
+function startGPS(){
+  if(!('geolocation' in navigator)){gpsFail('Este aparelho não expõe localização.');return}
+  if(policyBlocked()){gpsFail('policy');return}
+  $('#gpsBtn').textContent='Localizando…';try{audio=audio||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}startCompass();
+  const ok=pos=>{gps.fix={lat:pos.coords.latitude,lon:pos.coords.longitude,acc:pos.coords.accuracy};gps.err=null;$('#gpsBtn').textContent='GPS ativo ✓';$('#gpsBtn').classList.remove('primary');checkGeo();render();updateCompass()};
+  const bad=e=>gpsFail(e.code===1?'denied':'Sem sinal de GPS ainda. Tente de novo perto de uma janela.');
+  try{navigator.geolocation.getCurrentPosition(ok,bad,{enableHighAccuracy:true,timeout:15000,maximumAge:5000});navigator.geolocation.watchPosition(ok,()=>{},{enableHighAccuracy:true,maximumAge:10000})}catch(e){gpsFail('policy')}
+}
+function gpsFail(msg){gps.err=msg;$('#gpsBtn').textContent='Tentar GPS de novo';
+  if(msg==='policy')$('#gpsTxt').innerHTML='<b>Este visualizador bloqueia o GPS.</b> Abra a página no endereço próprio (baldasso.github.io/alpes-0211) — lá o pedido de permissão aparece.';
+  else if(msg==='denied')$('#gpsTxt').innerHTML='<b>Permissão negada.</b> No Chrome: cadeado na barra de endereço → Permissões → Localização → Permitir. Depois toque de novo.';
+  else $('#gpsTxt').innerHTML=`<b>${msg}</b>`}
+$('#gpsBtn').addEventListener('click',startGPS);
+function renderGps(){if(gps.fix){$('#gpsKv').style.display='';const p=[gps.fix.lon,gps.fix.lat];const nr=nearest(p);const off=distToRoute(p);$('#kvNear').textContent=`${NAMES[nr.k]} · ${nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km'}`;$('#kvRoute').textContent=off<3?'Sim ✓':`Não · ${off.toFixed(1)} km fora`;$('#gpsTxt').innerHTML=`<b>GPS ativo</b> · precisão ±${Math.round(gps.fix.acc)} m. O ponto vermelho é vocês.`}}
+
+
+/* ================= SBB ao vivo ================= */
+const LIVE_Q=[
+ {id:'ir90',from:'Genève-Aéroport',to:'Montreux',time:'10:50',match:/IR\s?90/,label:'IR 90 · 10:55',moments:['m1','m2','m3']},
+ {id:'gpx',from:'Montreux',to:'Interlaken West',time:'12:25',match:/GPX|GoldenPass|PE/,label:'GoldenPass · 12:32',moments:['m4','m5','m6']},
+ {id:'b105',from:'Interlaken West',to:'Wilderswil',time:'15:50',match:/105/,label:'Ônibus 105 · 15:57',moments:['m7','m8']},
+ {id:'bob',from:'Wilderswil',to:'Grindelwald',time:'16:05',match:/R\s?61|BOB|R/,label:'BOB · 16:10',moments:['m9','m10']}
+];
+const live={data:{},ok:null,at:null};
+async function fetchLive(){
+  const n=nowZ();if(n.date!==DAY){return}
+  for(const q of LIVE_Q){
+    try{
+      const u=`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(q.from)}&to=${encodeURIComponent(q.to)}&date=${DAY}&time=${q.time}&limit=3`;
+      const r=await fetch(u);if(!r.ok)throw 0;const j=await r.json();
+      const c=(j.connections||[]).find(c=>{const s=c.sections.find(s=>s.journey);return s&&q.match.test((s.journey.category||'')+' '+(s.journey.number||'')+' '+(s.journey.name||''))})||j.connections[0];
+      if(!c)continue;const sec=c.sections.find(s=>s.journey)||c.sections[0];
+      const d=sec.departure;const a=c.to;
+      live.data[q.id]={delay:d.delay,platform:d.platform,progPlatform:d.prognosis&&d.prognosis.platform,progDep:d.prognosis&&d.prognosis.departure,arrDelay:a.delay,progArr:a.prognosis&&a.prognosis.arrival,name:(sec.journey&&(sec.journey.category+' '+(sec.journey.number||'')))||''};
+      live.ok=true;live.at=Date.now();
+    }catch(e){if(live.ok===null)live.ok=false}
+  }
+  renderLive();renderNow();
+}
+function pillFor(id){
+  const d=live.data[id];
+  if(!d)return live.ok===false?'<span class="pill na">SBB ao vivo indisponível aqui</span>':'<span class="pill na">consultando SBB…</span>';
+  let out='';
+  if(d.delay==null)out+='<span class="pill ok">SBB · sem atraso informado</span>';
+  else if(d.delay<=0)out+='<span class="pill ok">SBB · no horário</span>';
+  else if(d.delay<10)out+=`<span class="pill late">SBB · atraso +${d.delay} min</span>`;
+  else out+=`<span class="pill bad">SBB · atraso +${d.delay} min</span>`;
+  if(d.progPlatform&&d.platform&&d.progPlatform!==d.platform)out+=`<span class="pill bad">plataforma mudou: ${d.progPlatform}</span>`;
+  else if(d.platform)out+=`<span class="pill na">plataforma ${d.platform}</span>`;
+  if(d.arrDelay>0)out+=`<span class="pill late">chegada +${d.arrDelay} min</span>`;
+  return out;
+}
+function renderLive(){
+  M.forEach(m=>{const q=LIVE_Q.find(q=>q.moments.includes(m.id));const el=document.getElementById(m.id);if(!el)return;let lv=el.querySelector('.live');if(!q){if(lv)lv.remove();return}if(!lv){lv=document.createElement('div');lv.className='live';el.querySelector('.hd').after(lv)}lv.innerHTML=`<span class="pill na">${q.label}</span>`+pillFor(q.id)});
+}
+
+/* ================= alertas por GPS ================= */
+/* por momento: onde preparar, onde descer, alvo da seta */
+const GEO={
+ m0:{target:'gva',arrive:['gva',0.4,'m1']},
+ m1:{target:'gva'},
+ m2:{target:'gva',leave:['gva',2,'m3']},
+ m3:{target:'montreux',prep:['vevey',2.5,'Vevey → próxima é MONTREUX. Peguem as malas na ponta do vagão.'],off:['montreux',1.5,'DESCER EM MONTREUX — voie 3, agora.'],arrive:['montreux',0.5,'m4']},
+ m4:{target:'montreux',leave:['montreux',2,'m5']},
+ m5:{target:'iwest',prep:['spiez',2.5,'Spiez → a próxima é a última: INTERLAKEN WEST. Peguem as malas na entrada do carro.'],arrive:['spiez',0.6,'m6']},
+ m6:{target:'iwest',off:['iwest',1.5,'DESCER EM INTERLAKEN WEST — fim da linha. Saída pela frente, baia E.'],arrive:['iwest',0.4,'m7']},
+ m7:{target:'wilderswil',leave:['iwest',0.8,'m8']},
+ m8:{target:'wilderswil',off:['wilderswil',0.7,'DESCER: Wilderswil, Bahnhof. Apertar o botão Stop.'],arrive:['wilderswil',0.3,'m9']},
+ m9:{target:'wilderswil',leave:['wilderswil',0.8,'m10']},
+ m10:{target:'grindelwald',prep:['schwendi',1.5,'Schwendi → depois vem o TERMINAL (não descer) e GRINDELWALD (descer). Malas na mão.'],off:['grindelwald',0.9,'DESCER EM GRINDELWALD — fim da linha. Táxi ou shuttle na saída.'],arrive:['grindelwald',0.3,'m11']},
+ m11:{target:'bergwelt'}
+};
+const fired=new Set();let bigAlert=null;
+function buzz(kind){try{navigator.vibrate&&navigator.vibrate(kind==='off'?[400,120,400,120,600]:[250,100,250])}catch(e){}
+  try{if(audio){const o=audio.createOscillator(),g=audio.createGain();o.frequency.value=kind==='off'?880:660;g.gain.value=.15;o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+.35)}}catch(e){}}
+let audio=null;
+function checkGeo(){
+  if(!gps.fix)return;const p=[gps.fix.lon,gps.fix.lat];const i=curIdx();if(i<0)return;const m=M[i];const g=GEO[m.id];if(!g)return;
+  const d=k=>distKm(p,ALL[k]);
+  if(g.prep&&!fired.has(m.id+'p')&&d(g.prep[0])<g.prep[1]){fired.add(m.id+'p');bigAlert={kind:'prep',txt:g.prep[2]};buzz('prep')}
+  if(g.off&&!fired.has(m.id+'o')&&d(g.off[0])<g.off[1]){fired.add(m.id+'o');bigAlert={kind:'off',txt:g.off[2]};buzz('off')}
+  if(g.arrive&&d(g.arrive[0])<g.arrive[1]&&!fired.has(m.id+'a')){fired.add(m.id+'a');bigAlert=null;store.manual=M.findIndex(x=>x.id===g.arrive[2]);store.manualDate=DAY;save();toast('GPS: chegaram · próximo passo')}
+  if(g.leave&&d(g.leave[0])>g.leave[1]&&!fired.has(m.id+'l')){fired.add(m.id+'l');bigAlert=null;store.manual=M.findIndex(x=>x.id===g.leave[2]);store.manualDate=DAY;save();toast('GPS: em movimento · próximo passo')}
+}
+/* bússola */
+const compass={heading:null,perm:false};
+function bearing(a,b){const φ1=a[1]*Math.PI/180,φ2=b[1]*Math.PI/180,Δλ=(b[0]-a[0])*Math.PI/180;const y=Math.sin(Δλ)*Math.cos(φ2),x=Math.cos(φ1)*Math.sin(φ2)-Math.sin(φ1)*Math.cos(φ2)*Math.cos(Δλ);return (Math.atan2(y,x)*180/Math.PI+360)%360}
+function onOrient(e){let h=null;if(typeof e.webkitCompassHeading==='number')h=e.webkitCompassHeading;else if(e.absolute&&typeof e.alpha==='number')h=(360-e.alpha)%360;else if(typeof e.alpha==='number')h=(360-e.alpha)%360;if(h!=null){compass.heading=h;updateCompass()}}
+function startCompass(){
+  if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){DeviceOrientationEvent.requestPermission().then(r=>{if(r==='granted'){compass.perm=true;window.addEventListener('deviceorientation',onOrient)}}).catch(()=>{})}
+  else{compass.perm=true;if('ondeviceorientationabsolute' in window)window.addEventListener('deviceorientationabsolute',onOrient);else window.addEventListener('deviceorientation',onOrient)}
+}
+function compassHTML(){
+  const i=curIdx();if(i<0||!gps.fix)return '';const g=GEO[M[i].id];if(!g)return '';
+  return `<div class="compass" id="compass"><div class="dial"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><g class="arrow" id="cArrow"><path d="M32 8 L42 36 L32 30 L22 36 Z" fill="#F4D27A"/></g><circle cx="32" cy="32" r="3" fill="#fff"/></svg></div><div class="txt"><div class="d" id="cDist">—</div><div class="k" id="cLab">—</div></div></div>`;
+}
+function updateCompass(){
+  const i=curIdx();if(i<0||!gps.fix)return;const g=GEO[M[i].id];if(!g)return;const t=ALL[g.target];const p=[gps.fix.lon,gps.fix.lat];
+  const br=bearing(p,t);const dk=distKm(p,t);const el=document.getElementById('cArrow');if(!el)return;
+  const rot=compass.heading==null?br:(br-compass.heading+360)%360;el.style.transform=`rotate(${rot}deg)`;
+  const dirs=['N','NE','L','SE','S','SO','O','NO'];
+  document.getElementById('cDist').textContent=(dk<1?Math.round(dk*1000)+' m':dk.toFixed(1)+' km')+' · '+NAMES[g.target];
+  document.getElementById('cLab').textContent=compass.heading==null?`rumo ${dirs[Math.round(br/45)%8]} · gire o celular para calibrar a bússola`:`a seta aponta para ${NAMES[g.target]}`;
+}
+
+/* relógio */
+function tick(){const n=nowZ();$('#hm').textContent=`${pad(n.h)}:${pad(n.m)}`;$('#ss').textContent=pad(n.s);const t=n.h*60+n.m+n.s/60;const p=n.date<DAY?0:n.date>DAY?1:Math.max(0,Math.min(1,(t-mins('08:30'))/(mins('16:40')-mins('08:30'))));$('#rail').style.width=(p*100).toFixed(2)+'%'}
+
+function renderCheck(){store.check=store.check||{};$('#check').innerHTML=CHECK.map((c,i)=>`<li><input type="checkbox" id="ck${i}" ${store.check[i]?'checked':''}><span>${c}</span></li>`).join('');$('#check').querySelectorAll('input').forEach((inp,i)=>inp.addEventListener('change',()=>{store.check[i]=inp.checked;save()}))}
+function render(){renderChips();renderNow();renderMap();renderGps();updateCompass()}
+renderMoments();renderCheck();$('#gloss').innerHTML=GLOSS.map(g=>`<div><div class="w">${g[0]}</div><div class="m">${g[1]}</div></div>`).join('');
+render();tick();setInterval(tick,1000);setInterval(()=>{renderNow();updateCompass()},30000);renderLive();fetchLive();setInterval(fetchLive,60000);
+if(policyBlocked())gpsFail('policy');
+</script>
+</body>
+</html>
