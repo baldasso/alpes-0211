@@ -30,17 +30,17 @@
   --gold-grad:linear-gradient(135deg,#F7DE9A 0%,#E4B95B 45%,#B9872F 100%);
   --red-grad:linear-gradient(135deg,#FF5A48,#D40000);
   --ease:cubic-bezier(.2,.7,.2,1);
-  --dock-h:84px;
+  --dock-h:112px;
 }
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;height:100%}
+html{overflow-x:clip}
 body{margin:0;min-height:100%;color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum","cv11";
-  background:var(--bg0);overflow-x:hidden}
+  background:var(--bg0)}
 .bgfx{position:fixed;inset:0;z-index:-1;background:
   radial-gradient(900px 600px at 15% -10%,rgba(228,185,91,.16),transparent 60%),
   radial-gradient(800px 700px at 110% 30%,rgba(28,91,194,.22),transparent 60%),
   radial-gradient(700px 500px at 40% 110%,rgba(255,77,61,.10),transparent 60%),
   linear-gradient(180deg,var(--bg1),var(--bg0))}
-.bgfx:after{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.5;pointer-events:none}
 .t{font-family:"Inter Tight",Inter,sans-serif;letter-spacing:-.02em}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
 .cap{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
@@ -73,7 +73,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 /* ===== step card ===== */
 .step{position:relative}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
-.photo{position:relative;height:200px;background-size:cover;background-position:center}
+.photo{position:relative;height:200px;overflow:hidden}.photo .img{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transform-origin:center;will-change:transform}
 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,10,20,.05) 20%,rgba(7,10,20,.85) 100%)}
 .photo .ph{position:absolute;left:18px;right:18px;bottom:14px;z-index:1}
 .head{padding:18px 18px 8px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
@@ -114,6 +114,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 /* ===== dock ===== */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,10,20,.6),rgba(7,10,20,.95));backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-top:1px solid var(--line)}
 .dock .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:56px 1fr 56px;gap:10px;align-items:center}
+.dock .top{max-width:640px;margin:0 auto 8px;display:flex;justify-content:center}
 .nb{height:56px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;place-items:center;transition:transform .12s var(--ease),opacity .2s}
 .nb:active{transform:scale(.96)}.nb[disabled]{opacity:.3}
 .nb svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -121,7 +122,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 .tabs .ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/3);border-radius:12px;background:var(--gold-grad);box-shadow:0 6px 18px -6px rgba(228,185,91,.7)}
 .tabs button{position:relative;z-index:1;font-weight:700;font-size:13.5px;color:var(--ink-2);letter-spacing:.01em;border-radius:12px}
 .tabs button.on{color:#1A1200}
-.stepidx{position:absolute;left:0;right:0;top:-20px;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stepidx{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:3px 12px;border-radius:999px;border:1px solid var(--line)}
 
 /* ===== mapa & info ===== */
 .sec{margin-top:14px}
@@ -203,8 +204,8 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 </main>
 
 <footer class="dock">
+  <div class="top"><div class="stepidx" id="stepidx"></div></div>
   <div class="in">
-    <div class="stepidx" id="stepidx"></div>
     <button class="nb" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="tabs"><div class="ind" id="ind"></div><button data-v="guia" class="on">Guia</button><button data-v="mapa">Mapa</button><button data-v="info">Info</button></div>
     <button class="nb" id="next" aria-label="Próximo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -261,11 +262,11 @@ const SIGN={
  /* ponto do PostAuto */
  post:(bay,line,dest)=>`<svg width="128" height="92" viewBox="0 0 128 92"><rect width="128" height="92" rx="7" fill="url(#gYel)"/><rect x="1" y="1" width="126" height="90" rx="6.5" fill="none" stroke="rgba(0,0,0,.12)"/><text x="18" y="60" font-family="Inter Tight" font-weight="800" font-size="56" fill="#111" letter-spacing="-.04em">${bay}</text><rect x="68" y="18" width="46" height="26" rx="4" fill="#111"/><text x="91" y="37" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="18" fill="#FFCC00">${line}</text><text x="118" y="80" text-anchor="end" font-family="Inter" font-weight="700" font-size="11" fill="#111">${dest}</text></svg>`,
  /* letreiro LED de destino no vagão */
- led:(txt)=>`<svg width="170" height="56" viewBox="0 0 190 60"><rect width="190" height="60" rx="6" fill="url(#gLed)"/><rect x="1" y="1" width="188" height="58" rx="5.5" fill="none" stroke="rgba(255,255,255,.12)"/><text x="95" y="39" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="19" fill="#FFB300" letter-spacing=".06em" style="filter:drop-shadow(0 0 6px rgba(255,179,0,.8))">${txt}</text></svg>`,
+ led:(txt)=>`<svg width="180" height="56" viewBox="0 0 190 60"><rect width="190" height="60" rx="6" fill="url(#gLed)"/><rect x="1" y="1" width="188" height="58" rx="5.5" fill="none" stroke="rgba(255,255,255,.12)"/><text x="95" y="38" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="${txt.length>12?14:19}" fill="#FFB300" letter-spacing=".04em" textLength="${Math.min(168,txt.length*(txt.length>12?9.2:12.5))}" lengthAdjust="spacingAndGlyphs" style="filter:drop-shadow(0 0 6px rgba(255,179,0,.8))">${txt}</text></svg>`,
  /* número do carro GoldenPass Prestige */
  car:(n)=>`<svg width="118" height="92" viewBox="0 0 118 92"><rect width="118" height="92" rx="7" fill="url(#gAnth)"/><rect x="1" y="1" width="116" height="90" rx="6.5" fill="none" stroke="rgba(255,255,255,.14)"/><text x="59" y="60" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="56" fill="url(#gBag)" letter-spacing="-.04em">${n}</text><text x="59" y="80" text-anchor="middle" font-family="Inter" font-weight="700" font-size="10" fill="#E4B95B" letter-spacing=".3em">PRESTIGE</text></svg>`,
  /* placa de direção (branca com seta) */
- dir:(txt)=>`<svg width="190" height="60" viewBox="0 0 190 60"><rect width="190" height="60" rx="6" fill="url(#gBlue)"/><text x="16" y="38" font-family="Inter" font-weight="700" font-size="17" fill="#fff">${txt}</text><path d="M150 30h22m-8-8l8 8-8 8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+ dir:(txt)=>`<svg width="200" height="60" viewBox="0 0 200 60"><rect width="200" height="60" rx="6" fill="url(#gBlue)"/><text x="14" y="37" font-family="Inter" font-weight="700" font-size="15" fill="#fff" textLength="${Math.min(140,txt.length*8.2)}" lengthAdjust="spacingAndGlyphs">${txt}</text><path d="M164 30h22m-8-8l8 8-8 8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`
 };
 
 /* ============================================================ PLANTAS (vista de cima) */
@@ -319,7 +320,7 @@ D.bus=()=>`
   <rect class="seat" x="48" y="64" width="40" height="40" rx="6"/><text class="lab s" x="68" y="118" text-anchor="middle">motorista</text>
   <g id="bags"><rect class="bag" x="66" y="150" width="20" height="14" rx="2"/><rect class="bag" x="66" y="150" width="20" height="14" rx="2"/><rect class="bag" x="66" y="150" width="20" height="14" rx="2"/></g>
   <g id="you"><circle class="you" cx="431" cy="73" r="7"/><circle class="you" cx="459" cy="73" r="7"/></g>
-  <text class="lab gold" x="365" y="44" text-anchor="middle">vão das malas</text><text class="lab red" x="445" y="44" text-anchor="middle">vocês</text>
+  <text class="lab gold" x="400" y="44" text-anchor="end">vão das malas</text><text class="lab red" x="420" y="44" text-anchor="start">vocês</text>
   <text class="lab s" x="300" y="222" text-anchor="middle">PostAuto 105 · malas ao lado da porta do meio, vocês logo atrás</text>
 </svg>`;
 /* BOB: trem que se divide */
@@ -336,15 +337,15 @@ D.split=()=>`
 /* Montreux: corte com dois níveis */
 D.levels=()=>`
 <svg class="dg" viewBox="0 0 600 230" data-anim="levels">
-  <rect class="lvl" x="40" y="36" width="400" height="64" rx="8"/><rect class="lvl" x="40" y="130" width="400" height="64" rx="8"/>
-  <text class="lab gold" x="56" y="58">Nível de cima · MOB GoldenPass</text><text class="lab s" x="56" y="80">embarque · 12:32</text>
-  <text class="lab" x="56" y="152">Nível de baixo · SBB</text><text class="lab s" x="56" y="174">vocês chegam aqui · 12:09</text>
-  <g transform="translate(366,46)"><rect width="56" height="44" rx="5" fill="url(#gBlue)"/><text x="28" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">5</text></g>
-  <g transform="translate(366,140)"><rect width="56" height="44" rx="5" fill="url(#gBlue)"/><text x="28" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">3</text></g>
+  <rect class="lvl" x="40" y="36" width="360" height="64" rx="8"/><rect class="lvl" x="40" y="130" width="360" height="64" rx="8"/>
+  <text class="lab gold" x="56" y="60" style="font-size:15px">Nível de cima · GoldenPass</text><text class="lab s" x="56" y="82">embarque · 12:32</text>
+  <text class="lab" x="56" y="154" style="font-size:15px">Nível de baixo · SBB</text><text class="lab s" x="56" y="176">vocês chegam aqui · 12:09</text>
+  <g transform="translate(336,46)"><rect width="52" height="44" rx="5" fill="url(#gBlue)"/><text x="26" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">5</text></g>
+  <g transform="translate(336,140)"><rect width="52" height="44" rx="5" fill="url(#gBlue)"/><text x="26" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">3</text></g>
   <rect class="lvl" x="488" y="36" width="72" height="158" rx="8"/><text class="lab s" x="524" y="214" text-anchor="middle">elevador</text>
   <g id="cab"><rect class="cab" x="496" y="140" width="56" height="48" rx="5"/><circle cx="514" cy="158" r="5" fill="#fff"/><circle cx="534" cy="158" r="5" fill="#fff"/><rect x="506" y="168" width="36" height="12" rx="2" fill="rgba(255,255,255,.7)"/></g>
-  <path class="arr" id="arr2" d="M300 162 H 480"/><path class="arr" d="M480 68 H 300"/>
-  <text class="lab s" x="300" y="118" text-anchor="middle">mesma estação · um andar acima</text>
+  <path class="arr" id="arr2" d="M410 162 H 478"/><path class="arr" d="M478 68 H 410"/>
+  <text class="lab s" x="220" y="118" text-anchor="middle">mesma estação · um andar acima</text>
 </svg>`;
 /* praça dos ônibus */
 D.plaza=()=>`
@@ -493,7 +494,7 @@ function renderStep(animate=true){
   const head=`<div class="head">${timeBlock}<div><div class="cmd">${m.cmd}</div><div class="sub">${m.sub}</div></div></div>`;
   const statusPill=isCur?(n.date===DAY&&left!=null?`<span class="pill ok"><i></i>agora · ${fmtDur(left)} restantes</span>`:`<span class="pill ok"><i></i>passo atual</span>`):(i<pos?`<span class="pill"><i></i>feito</span>`:`<span class="pill"><i></i>a seguir</span>`);
   const html=`<article class="card step" id="stepCard">
-    ${m.photo?`<div class="photo" style="background-image:url('${m.photo}')"></div>`:''}
+    ${m.photo?`<div class="photo"><div class="img" style="background-image:url('${m.photo}')"></div></div>`:''}
     ${head}
     <div class="pills">${statusPill}${lq?pills(lq.id):''}</div>
     ${alerts?`<div style="height:12px"></div>${alerts}`:''}
@@ -512,7 +513,7 @@ function renderStep(animate=true){
   if(animate){
     const els=stage.querySelectorAll('.photo,.head,.pills,.alert,.sign,.diag,.do .it,.pb');
     gsap.fromTo(els,{y:18,opacity:0},{y:0,opacity:1,duration:.55,stagger:.06,ease:'power3.out',clearProps:'transform'});
-    const ph=stage.querySelector('.photo');if(ph)gsap.fromTo(ph,{backgroundSize:'112%'},{backgroundSize:'100%',duration:6,ease:'power1.out'});
+    const ph=stage.querySelector('.photo .img');if(ph)gsap.fromTo(ph,{scale:1.12},{scale:1,duration:7,ease:'power1.out'});
   }
   animDiagram(stage);
 }
@@ -616,7 +617,7 @@ function startCompass(){if(typeof DeviceOrientationEvent!=='undefined'&&typeof D
 function setView(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));const k={guia:0,mapa:1,info:2}[v];gsap.to('#ind',{xPercent:k*100,duration:.35,ease:'power3.out'});$('#prev').style.visibility=$('#next').style.visibility=v==='guia'?'visible':'hidden';$('#stepidx').style.visibility=v==='guia'?'visible':'hidden';if(v==='mapa')renderMapa();if(v==='info')renderInfo();window.scrollTo({top:0});location.hash=v==='guia'?'':'#'+v}
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.v)));
 $('#prev').addEventListener('click',()=>go(viewIdx-1));$('#next').addEventListener('click',()=>go(viewIdx+1));
-let sx=null;document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{if(sx==null||!$('#v-guia').classList.contains('on'))return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>70){go(viewIdx+(dx<0?1:-1))}sx=null},{passive:true});
+let sx=null,sy=null;document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});document.addEventListener('touchend',e=>{if(sx==null||!$('#v-guia').classList.contains('on'))return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>90&&Math.abs(dx)>2.5*Math.abs(dy)){go(viewIdx+(dx<0?1:-1))}sx=sy=null},{passive:true});
 function tick(){const n=nowZ();$('#hm').textContent=`${pad(n.h)}:${pad(n.m)}`;$('#ss').textContent=pad(n.s)}
 function renderAll(){renderStep(false);renderLine(false)}
 renderStep(true);renderLine(false);tick();setInterval(tick,1000);
