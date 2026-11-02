@@ -394,7 +394,7 @@ D.levels=()=>`
 <svg class="dg" viewBox="0 0 600 230" data-anim="levels">
   <rect class="lvl" x="40" y="36" width="360" height="64" rx="8"/><rect class="lvl" x="40" y="130" width="360" height="64" rx="8"/>
   <text class="lab gold" x="56" y="60" style="font-size:15px">Nível de cima · GoldenPass</text><text class="lab s" x="56" y="82">embarque · 12:32</text>
-  <text class="lab" x="56" y="154" style="font-size:15px">Nível de baixo · SBB</text><text class="lab s" x="56" y="176">vocês chegam aqui · 11:36</text>
+  <text class="lab" x="56" y="154" style="font-size:15px">Nível de baixo · SBB</text><text class="lab s" x="56" y="176">vocês chegam aqui · 11:09</text>
   <g transform="translate(336,46)"><rect width="52" height="44" rx="5" fill="url(#gBlue)"/><text x="26" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">5</text></g>
   <g transform="translate(336,140)"><rect width="52" height="44" rx="5" fill="url(#gBlue)"/><text x="26" y="33" text-anchor="middle" font-family="Inter Tight" font-weight="800" font-size="30" fill="#fff">3</text></g>
   <rect class="lvl" x="488" y="36" width="72" height="158" rx="8"/><text class="lab s" x="524" y="214" text-anchor="middle">elevador</text>
@@ -433,17 +433,17 @@ const M=[
   diag:()=>SIGN.board('10:14','IR 95','Brig','via Lausanne · Vevey · Montreux','3'),diagCap:'É assim que o trem aparece no painel: destino Brig. Montreux é parada no meio.',
   do:[['see','Siga a placa <span class="w">Gare CFF · Bahnhof</span>. Pegue um <b>carrinho de bagagem</b> e desça pelo <b>elevador</b> até os trens.'],['see','Nada para comprar nem validar: bilhetes no app SBB.'],['ear','Às <b>10:05</b>, os dois na Voie 3 com tudo. O trem para só 2 minutos.']],
   pb:'Perderam o 10:14? O <b>IR 90 das 10:55</b> (Voie 3) ainda chega a tempo do GoldenPass (12:09). Depois disso, não.'},
- {id:'m2',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:00',end:'10:14',node:1.1,stage:'IR 95',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 95 · 10:14 → Montreux 11:36',
+ {id:'m2',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:00',end:'10:14',node:1.1,stage:'IR 90',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 95 · 10:14 → Montreux 11:36',
   sign:()=>SIGN.platform(3),signTxt:'Qualquer vagão com um <b>2</b> grande ao lado da porta. Não há lugar marcado.',
   diag:()=>D.coach({}),diagCap:'Malas grandes no porta-malas junto à porta. Vocês nos primeiros assentos, de olho nelas.',
   do:[['bag','<b>2 malas grandes</b> → porta-malas na ponta do vagão, logo ao entrar. <b>Mala de bordo e mochila</b> → com vocês.'],['see','Trem de dois andares: fiquem <b>embaixo</b>, perto das malas.'],['see','Depois de Lausanne, o lago fica do lado direito.']],
   pb:'Perderam o 10:14? <b>IR 90 às 10:55</b>, mesma Voie 3 → Montreux 12:09, ainda a tempo. Depois disso o GoldenPass se perde: IR 95 11:14 até <b>Visp</b> → IC 8 → Spiez → IC 61 → Interlaken West.'},
- {id:'m3',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:14',end:'11:36',node:1.5,stage:'IR 95',photo:'img/montreux.jpg',cmd:'1h22 de viagem. Descer em Montreux, 6ª parada.',sub:'Preparar em Vevey (~11:30) · descer 11:36 na Voie 3',
+ {id:'m3',th:'sbb',mark:'SBB · IR 90',msub:'InterRegio · 2ª classe',t:'09:55',end:'11:09',node:1.5,stage:'IR 90',photo:'img/montreux.jpg',cmd:'1h14 de viagem. Descer em Montreux, 5ª parada.',sub:'Preparar em Vevey (11:02) · descer 11:09 na Voie 3',
   sign:null,
-  diag:()=>D.stops({stops:['Gen.-Aéroport','Genève','Nyon','Morges','Lausanne','Vevey','Montreux'],prep:5,off:6,dur:'anúncio: “Prochain arrêt: Montreux”'}),diagCap:'Em Vevey, levantar e pegar as malas. Em Montreux, descer: a parada dura 1 minuto.',
-  do:[['ear','Quando anunciarem <b>Vevey</b>: levantem, peguem as <b>2 malas grandes</b> no porta-malas e fiquem perto da porta com tudo: 2 grandes, 2 de bordo, 2 mochilas.'],['off','<b>Descer em Montreux, 11:36.</b> Voie 3. Depois, 56 minutos de folga.']],
+  diag:()=>D.stops({stops:['Gen.-Aéroport','Genève','Renens','Lausanne','Vevey','Montreux'],prep:4,off:5,dur:'anúncio: “Prochain arrêt: Montreux”'}),diagCap:'Em Vevey, levantar e pegar as malas. Em Montreux, descer: a parada dura 1 minuto.',
+  do:[['ear','Quando anunciarem <b>Vevey</b>: levantem, peguem as <b>2 malas grandes</b> no porta-malas e fiquem perto da porta com tudo: 2 grandes, 2 de bordo, 2 mochilas.'],['off','<b>Descer em Montreux, 11:09.</b> Voie 3. Depois, 1h23 de folga.']],
   pb:'Passaram de Montreux? Desçam em Aigle (próxima) e voltem no primeiro trem, 10 min. Se perder o GoldenPass: ver o passo de Montreux.'},
- {id:'m4',th:'gold',mark:'GOLDENPASS EXPRESS',msub:'Troca Montreux · MOB',t:'11:36',end:'12:32',node:2,stage:'Montreux',photo:null,cmd:'Elevador. Nível de cima. Voie 5.',sub:'56 minutos para trocar · GoldenPass Express 12:32 · dá para um café',
+ {id:'m4',th:'gold',mark:'GOLDENPASS EXPRESS',msub:'Troca Montreux · MOB',t:'11:09',end:'12:32',node:2,stage:'Montreux',photo:null,cmd:'Elevador. Nível de cima. Voie 5.',sub:'1h23 para trocar · GoldenPass Express 12:32 · café com calma',
   sign:()=>SIGN.platform(5),signTxt:'Siga as placas <b>MOB · GoldenPass</b>. As voies 5–7 ficam <b>no andar de cima</b> da mesma estação. Elevador, não escada.',
   diag:()=>D.levels(),diagCap:'Da Voie 3 ao elevador, um andar para cima, Voie 5. Com calma: quase uma hora.',
   do:[['see','No painel: <b>12:32 · GoldenPass Express</b>. O destino pode dizer <i>Interlaken Ost</i> ou <i>Zweisimmen</i> — é o mesmo trem.'],['see','Na plataforma, procurem o <b>carro 10</b>, número na lateral. A classe Prestige fica numa das pontas.'],['say','Reserva <b>1233940-1</b> · carro 10 · assentos <b>12 e 18</b>. Embarcar até 12:27.']],
@@ -502,7 +502,7 @@ const GEO={
  m10:{target:'grindelwald',prep:['schwendi',1.5,'Schwendi → depois vem o TERMINAL (não descer) e GRINDELWALD (descer).'],off:['grindelwald',0.9,'DESCER EM GRINDELWALD — fim da linha.'],arrive:['grindelwald',0.3,'m11']},
  m11:{target:'bergwelt'}};
 const LIVE_Q=[
- {id:'ir90',from:'Genève-Aéroport',to:'Montreux',time:'10:10',match:/IR\s?95/,label:'IR 95 · 10:14',m:['m1','m2','m3']},
+ {id:'ir90',from:'Genève-Aéroport',to:'Montreux',time:'09:50',match:/IR\s?90/,label:'IR 90 · 09:55',m:['m1','m2','m3']},
  {id:'gpx',from:'Montreux',to:'Interlaken West',time:'12:25',match:/GPX|PE|GoldenPass/i,label:'GoldenPass · 12:32',m:['m4','m5','m6']},
  {id:'b105',from:'Interlaken West',to:'Wilderswil, Bahnhof',time:'15:50',match:/EV/,label:'Ônibus EV 3 · 15:57',m:['m7','m8']},
  {id:'bob',from:'Wilderswil',to:'Grindelwald',time:'16:05',match:/R\s?61|BOB|^R\b/,label:'BOB · 16:10',m:['m9','m10']}];
