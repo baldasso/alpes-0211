@@ -36,7 +36,7 @@
 html{overflow-x:clip}
 body{margin:0;min-height:100%;color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum","cv11";
   background:var(--bg0)}
-.bgfx{position:fixed;inset:0;z-index:-1;background:
+.bgfx{position:fixed;top:0;left:0;right:0;height:130vh;z-index:-1;transform:translateZ(0);background:
   radial-gradient(900px 600px at 15% -10%,rgba(228,185,91,.16),transparent 60%),
   radial-gradient(800px 700px at 110% 30%,rgba(28,91,194,.22),transparent 60%),
   radial-gradient(700px 500px at 40% 110%,rgba(255,77,61,.10),transparent 60%),
@@ -48,7 +48,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 a{color:inherit}
 
 /* ===== header ===== */
-.hdr{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top);background:linear-gradient(180deg,rgba(7,10,20,.92),rgba(7,10,20,.72));backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--line)}
+.hdr{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top);background:linear-gradient(180deg,#0B1020,#0A0E1B);border-bottom:1px solid var(--line);will-change:transform;transform:translateZ(0)}
 .hdr .row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px}
 .hdr .route{font-family:"Inter Tight";font-weight:600;font-size:17px;letter-spacing:-.01em;margin-top:2px}
 .clock{text-align:right;line-height:1}.clock .hm{font-size:22px;font-weight:700;letter-spacing:-.03em}.clock .s{font-size:12px;color:var(--muted);margin-left:3px;font-weight:500}.clock .z{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:Inter;font-weight:600}
@@ -163,7 +163,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 .fin .toast-line{margin-top:18px;font-family:"Inter Tight";font-weight:600;font-size:19px;letter-spacing:-.02em;color:#F2D48A}
 
 /* ===== dock ===== */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,10,20,.6),rgba(7,10,20,.95));backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-top:1px solid var(--line)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#0C1222,#080B16);border-top:1px solid var(--line);will-change:transform;transform:translateZ(0)}
 .dock .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:56px 1fr 56px;gap:10px;align-items:center}
 .dock .top{max-width:640px;margin:0 auto 8px;display:flex;justify-content:center}
 .nb{height:50px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;place-items:center;transition:transform .12s var(--ease),opacity .2s}
