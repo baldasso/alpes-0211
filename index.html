@@ -30,7 +30,7 @@
   --gold-grad:linear-gradient(135deg,#F7DE9A 0%,#E4B95B 45%,#B9872F 100%);
   --red-grad:linear-gradient(135deg,#FF5A48,#D40000);
   --ease:cubic-bezier(.2,.7,.2,1);
-  --dock-h:112px;
+  --dock-h:80px;
 }
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;height:100%}
 html{overflow-x:clip}
@@ -49,11 +49,14 @@ a{color:inherit}
 
 /* ===== header ===== */
 .hdr{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top);background:linear-gradient(180deg,rgba(7,10,20,.92),rgba(7,10,20,.72));backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--line)}
-.hdr .row{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 6px}
+.hdr .row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px}
 .hdr .route{font-family:"Inter Tight";font-weight:600;font-size:17px;letter-spacing:-.01em;margin-top:2px}
-.clock{text-align:right;line-height:1}.clock .hm{font-size:26px;font-weight:700;letter-spacing:-.03em}.clock .s{font-size:12px;color:var(--muted);margin-left:3px;font-weight:500}.clock .z{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:Inter;font-weight:600}
+.clock{text-align:right;line-height:1}.clock .hm{font-size:22px;font-weight:700;letter-spacing:-.03em}.clock .s{font-size:12px;color:var(--muted);margin-left:3px;font-weight:500}.clock .z{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:Inter;font-weight:600}
 /* linha de estações */
-.line{padding:4px 10px 10px}
+.line{padding:4px 10px 10px;overflow:hidden;transition:max-height .35s var(--ease),opacity .25s,padding .35s;max-height:90px}
+.hdr.collapsed .line{max-height:0;padding-top:0;padding-bottom:0;opacity:0}
+.slim{height:0;overflow:hidden;background:rgba(255,255,255,.08);transition:height .3s}.hdr.collapsed .slim{height:3px}.slim i{display:block;height:100%;width:0;background:var(--gold-grad);transition:width .6s var(--ease)}
+.lt{width:40px;height:40px;border-radius:12px;border:1px solid var(--line-2);display:grid;place-items:center;background:rgba(255,255,255,.04)}.lt svg{width:18px;height:18px;fill:none;stroke:var(--ink-2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}.hdr.collapsed .lt svg{transform:rotate(180deg)}
 .line svg{display:block;width:100%;height:auto;overflow:visible}
 .line .track{stroke:rgba(255,255,255,.14);stroke-width:3;fill:none;stroke-linecap:round}
 .line .prog{stroke:url(#gProg);stroke-width:3;fill:none;stroke-linecap:round}
@@ -73,7 +76,7 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 /* ===== step card ===== */
 .step{position:relative}
 .card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
-.photo{position:relative;height:200px;overflow:hidden}.photo .img{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transform-origin:center;will-change:transform}
+.photo{position:relative;height:150px;overflow:hidden}.photo .img{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transform-origin:center;will-change:transform}
 .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,10,20,.05) 20%,rgba(7,10,20,.85) 100%)}
 .photo .ph{position:absolute;left:18px;right:18px;bottom:14px;z-index:1}
 .head{padding:18px 18px 8px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
@@ -163,10 +166,10 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,10,20,.6),rgba(7,10,20,.95));backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px) saturate(1.3);border-top:1px solid var(--line)}
 .dock .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:56px 1fr 56px;gap:10px;align-items:center}
 .dock .top{max-width:640px;margin:0 auto 8px;display:flex;justify-content:center}
-.nb{height:56px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;place-items:center;transition:transform .12s var(--ease),opacity .2s}
+.nb{height:50px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;place-items:center;transition:transform .12s var(--ease),opacity .2s}
 .nb:active{transform:scale(.96)}.nb[disabled]{opacity:.3}
 .nb svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.tabs{height:56px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;grid-template-columns:1fr 1fr 1fr;padding:5px;position:relative}
+.tabs{height:50px;border-radius:16px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);display:grid;grid-template-columns:1fr 1fr 1fr;padding:5px;position:relative}
 .tabs .ind{position:absolute;top:5px;bottom:5px;left:5px;width:calc((100% - 10px)/3);border-radius:12px;background:var(--gold-grad);box-shadow:0 6px 18px -6px rgba(228,185,91,.7)}
 .tabs button{position:relative;z-index:1;font-weight:700;font-size:13.5px;color:var(--ink-2);letter-spacing:.01em;border-radius:12px}
 .tabs button.on{color:#1A1200}
@@ -239,10 +242,11 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 
 <header class="hdr">
   <div class="row">
-    <div><div class="cap">Seg · 02 nov · dia 6</div><div class="route">Annecy → Grindelwald</div></div>
-    <div class="clock mono"><div><span class="hm" id="hm">--:--</span><span class="s" id="ss"></span></div><div class="z">hora suíça</div></div>
+    <div><div class="cap" id="hdrCap">Seg · 02 nov</div><div class="route">Annecy → Grindelwald</div></div>
+    <div style="display:flex;align-items:center;gap:10px"><div class="clock mono"><div><span class="hm" id="hm">--:--</span></div><div class="z">hora suíça</div></div><button class="lt" id="lineToggle" aria-label="Mostrar/esconder linha"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button></div>
   </div>
-  <div class="line"><svg id="lineSvg" viewBox="0 0 640 78" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  <div class="line" id="line"><svg id="lineSvg" viewBox="0 0 640 78" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  <div class="slim" id="slim"><i id="slimBar"></i></div>
 </header>
 
 <main>
@@ -252,7 +256,6 @@ main{padding:14px 14px calc(var(--dock-h) + 28px + env(safe-area-inset-bottom));
 </main>
 
 <footer class="dock">
-  <div class="top"><div class="stepidx" id="stepidx"></div></div>
   <div class="in">
     <button class="nb" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
     <div class="tabs"><div class="ind" id="ind"></div><button data-v="guia" class="on">Guia</button><button data-v="mapa">Mapa</button><button data-v="info">Info</button></div>
@@ -429,12 +432,12 @@ const M=[
   diag:()=>SIGN.board('10:14','IR 95','Brig','via Lausanne · Vevey · Montreux','3'),diagCap:'É assim que o trem aparece no painel: destino Brig. Montreux é parada no meio.',
   do:[['see','Siga a placa <span class="w">Gare CFF · Bahnhof</span>. Pegue um <b>carrinho de bagagem</b> e desça pelo <b>elevador</b> até os trens.'],['see','Nada para comprar nem validar: bilhetes no app SBB.'],['ear','Às <b>10:05</b>, os dois na Voie 3 com tudo. O trem para só 2 minutos.']],
   pb:'Perderam o 10:14? O <b>IR 90 das 10:55</b> (Voie 3) ainda chega a tempo do GoldenPass (12:09). Depois disso, não.'},
- {id:'m2',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:00',end:'10:14',node:1.1,stage:'IR 90',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 95 · 10:14 → Montreux 11:36',
+ {id:'m2',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:00',end:'10:14',node:1.1,stage:'IR 95',photo:null,cmd:'Entrar num vagão com o “2”. Andar de baixo.',sub:'Voie 3 · IR 95 · 10:14 → Montreux 11:36',
   sign:()=>SIGN.platform(3),signTxt:'Qualquer vagão com um <b>2</b> grande ao lado da porta. Não há lugar marcado.',
   diag:()=>D.coach({}),diagCap:'Malas grandes no porta-malas junto à porta. Vocês nos primeiros assentos, de olho nelas.',
   do:[['bag','<b>3 malas grandes</b> → porta-malas na ponta do vagão, logo ao entrar. <b>Mala de bordo e mochila</b> → com vocês.'],['see','Trem de dois andares: fiquem <b>embaixo</b>, perto das malas.'],['see','Depois de Lausanne, o lago fica do lado direito.']],
   pb:'Perderam o 10:14? <b>IR 90 às 10:55</b>, mesma Voie 3 → Montreux 12:09, ainda a tempo. Depois disso o GoldenPass se perde: IR 95 11:14 até <b>Visp</b> → IC 8 → Spiez → IC 61 → Interlaken West.'},
- {id:'m3',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:14',end:'11:36',node:1.5,stage:'IR 90',photo:'img/montreux.jpg',cmd:'1h22 de viagem. Descer em Montreux, 6ª parada.',sub:'Preparar em Vevey (~11:30) · descer 11:36 na Voie 3',
+ {id:'m3',th:'sbb',mark:'SBB · IR 95',msub:'InterRegio · 2ª classe',t:'10:14',end:'11:36',node:1.5,stage:'IR 95',photo:'img/montreux.jpg',cmd:'1h22 de viagem. Descer em Montreux, 6ª parada.',sub:'Preparar em Vevey (~11:30) · descer 11:36 na Voie 3',
   sign:null,
   diag:()=>D.stops({stops:['Gen.-Aéroport','Genève','Nyon','Morges','Lausanne','Vevey','Montreux'],prep:5,off:6,dur:'anúncio: “Prochain arrêt: Montreux”'}),diagCap:'Em Vevey, levantar e pegar as malas. Em Montreux, descer: a parada dura 1 minuto.',
   do:[['ear','Quando anunciarem <b>Vevey</b>: levantem, peguem as <b>3 malas grandes</b> no porta-malas e fiquem perto da porta com as 6.'],['off','<b>Descer em Montreux, 11:36.</b> Voie 3. Depois, 56 minutos de folga.']],
@@ -503,7 +506,7 @@ const LIVE_Q=[
  {id:'b105',from:'Interlaken West',to:'Wilderswil, Bahnhof',time:'15:50',match:/EV/,label:'Ônibus EV 3 · 15:57',m:['m7','m8']},
  {id:'bob',from:'Wilderswil',to:'Grindelwald',time:'16:05',match:/R\s?61|BOB|^R\b/,label:'BOB · 16:10',m:['m9','m10']}];
 const live={data:{},ok:null};
-async function fetchLive(){const n=nowZ();if(n.date!==DAY)return;for(const q of LIVE_Q){try{const r=await fetch(`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(q.from)}&to=${encodeURIComponent(q.to)}&date=${DAY}&time=${q.time}&limit=3`);if(!r.ok)throw 0;const j=await r.json();const c=(j.connections||[]).find(c=>{const s=c.sections.find(s=>s.journey);return s&&q.match.test((s.journey.category||'')+' '+(s.journey.number||'')+' '+(s.journey.name||''))})||(j.connections||[])[0];if(!c)continue;const sec=c.sections.find(s=>s.journey)||c.sections[0];const d=sec.departure,a=c.to;live.data[q.id]={delay:d.delay,platform:d.platform,prog:d.prognosis&&d.prognosis.platform,arrDelay:a.delay};live.ok=true}catch(e){if(live.ok===null)live.ok=false}}renderStep(false);renderMapa()}
+async function fetchLive(){const n=nowZ();if(n.date!==DAY||document.hidden)return;const cur=M[posIdx()].id,vw=M[viewIdx].id;const want=LIVE_Q.filter(q=>q.m.includes(cur)||q.m.includes(vw)||$('#v-mapa').classList.contains('on'));for(const q of want){try{const r=await fetch(`https://transport.opendata.ch/v1/connections?from=${encodeURIComponent(q.from)}&to=${encodeURIComponent(q.to)}&date=${DAY}&time=${q.time}&limit=3`);if(!r.ok)throw 0;const j=await r.json();const c=(j.connections||[]).find(c=>{const s=c.sections.find(s=>s.journey);return s&&q.match.test((s.journey.category||'')+' '+(s.journey.number||'')+' '+(s.journey.name||''))})||(j.connections||[])[0];if(!c)continue;const sec=c.sections.find(s=>s.journey)||c.sections[0];const d=sec.departure,a=c.to;live.data[q.id]={delay:d.delay,platform:d.platform,prog:d.prognosis&&d.prognosis.platform,arrDelay:a.delay};live.ok=true}catch(e){if(live.ok===null)live.ok=false}}updateDynamic();if($("#v-mapa").classList.contains("on"))renderMapa()}
 function pills(id){const d=live.data[id];const n=nowZ();if(n.date!==DAY)return `<span class="pill"><i></i>SBB ao vivo a partir de 02/11</span>`;if(!d)return live.ok===false?`<span class="pill"><i></i>SBB ao vivo indisponível</span>`:`<span class="pill"><i></i>consultando SBB…</span>`;let o='';if(d.delay==null||d.delay<=0)o+=`<span class="pill ok"><i></i>SBB · no horário</span>`;else o+=`<span class="pill ${d.delay<10?'late':'bad'}"><i></i>SBB · atraso +${d.delay} min</span>`;if(d.prog&&d.platform&&d.prog!==d.platform)o+=`<span class="pill bad"><i></i>plataforma mudou: ${d.prog}</span>`;else if(d.platform)o+=`<span class="pill"><i></i>plataforma ${d.platform}</span>`;if(d.arrDelay>0)o+=`<span class="pill late"><i></i>chegada +${d.arrDelay}</span>`;return o}
 
 /* ============================================================ ESTADO */
@@ -548,7 +551,7 @@ function renderStep(animate=true){
     ${m.photo?`<div class="photo"><div class="img" style="background-image:url('${m.photo}')"></div></div>`:''}
     <div class="brand"><span class="mark">${m.mark}</span><span class="sub">${m.msub}</span></div>
     ${head}
-    <div class="pills">${statusPill}${lq?pills(lq.id):''}</div>
+    <div class="pills"><span data-dyn="status">${statusPill}</span><span data-dyn="live">${lq?pills(lq.id):''}</span></div>
     ${alerts?`<div style="height:12px"></div>${alerts}`:''}
     ${m.id==='m11'?`<div class="fin"><div class="big">Chegaram.</div><div class="sm">Annecy → Grindelwald, do jeito que estava desenhado.</div><div class="stats"><div><div class="n">~320</div><div class="k">km</div></div><div><div class="n">4</div><div class="k">trens e ônibus</div></div><div><div class="n">8h10</div><div class="k">porta a porta</div></div></div><div class="toast-line">Agora: spa, Eiger na janela e um Trentodoc.</div><div style="margin-top:14px"><button class="btn gold" id="partyBtn">Confete de novo</button></div></div>`:''}
     ${m.sign?`<div class="sign"><div class="sg">${m.sign()}</div><div class="sx">${m.signTxt}</div></div>`:''}
@@ -558,7 +561,7 @@ function renderStep(animate=true){
     <div style="display:flex;gap:10px;padding:0 18px 18px">${!isCur?`<button class="btn" id="hereBtn">Estamos aqui</button>`:`<button class="btn" id="doneBtn">Feito → próximo</button>`}${i!==autoIdx()||store.pos!=null?`<button class="btn" id="clockBtn">Agora (relógio)</button>`:''}</div>
   </article>`;
   const stage=$('#stage');stage.innerHTML=html;
-  $('#stepidx').textContent=`Passo ${i+1} de ${M.length}`;
+  $('#hdrCap').textContent=`Passo ${i+1} de ${M.length} · ${m.stage}`;
   $('#prev').disabled=i===0;$('#next').disabled=i===M.length-1;
   const hb=$('#hereBtn');if(hb)hb.addEventListener('click',()=>{setPos(i);toast('Posição marcada');renderAll()});
   const db=$('#doneBtn');if(db)db.addEventListener('click',()=>{if(i<M.length-1){setPos(i+1);go(i+1)}});
@@ -572,7 +575,8 @@ function renderStep(animate=true){
   if(m.id==='m11'){const pb=$('#partyBtn');if(pb)pb.addEventListener('click',celebrate);if(animate)setTimeout(celebrate,350)}
 }
 function animDiagram(root){
-  const svg=root.querySelector('svg.dg');if(!svg)return;const k=svg.dataset.anim;
+  const svg=root.querySelector('svg.dg');if(!svg)return;const k=svg.dataset.anim;gsap.killTweensOf(svg.querySelectorAll('*'));
+  if(!svg._tap){svg._tap=true;svg.addEventListener('click',()=>{const clone=svg.cloneNode(true);clone._tap=false;svg.replaceWith(clone);animDiagram(root)})}
   if(k==='coach'){const tl=gsap.timeline({delay:.3});
     tl.from(svg.querySelectorAll('.ol,.in,.door'),{drawSVG:'0%',duration:1,ease:'power2.inOut',stagger:.05})
       .from(svg.querySelectorAll('.seat'),{opacity:0,scale:.6,transformOrigin:'center',duration:.35,stagger:{each:.012,from:'start'}},'-=.4')
@@ -583,18 +587,19 @@ function animDiagram(root){
     tl.from(svg.querySelectorAll('#you circle'),{scale:0,transformOrigin:'center',duration:.5,ease:'back.out(2)',stagger:.1},'-=.2')
       .from(svg.querySelectorAll('.lab'),{opacity:0,duration:.4,stagger:.08},'-=.3').from(svg.querySelector('.arr'),{drawSVG:'0%',duration:.6},'-=.2');}
   if(k==='stops'){const n=+svg.dataset.n,off=+svg.dataset.off,prep=+svg.dataset.prep;const x0=56,x1=544,st=(x1-x0)/(n-1);const mv=svg.querySelector('#mv'),lnp=svg.querySelector('#lnp');
-    gsap.set(lnp,{attr:{x2:x0}});const tl=gsap.timeline({delay:.4,repeat:-1,repeatDelay:2.5});
+    gsap.set(lnp,{attr:{x2:x0}});const tl=gsap.timeline({delay:.4});
     tl.to(mv,{attr:{cx:x0+prep*st},duration:2.2,ease:'power1.inOut'}).to(lnp,{attr:{x2:x0+prep*st},duration:2.2,ease:'power1.inOut'},'<')
       .to(svg.querySelectorAll('.nd.prep'),{scale:1.5,transformOrigin:'center',duration:.25,yoyo:true,repeat:1},'-=.1')
       .to(mv,{attr:{cx:x0+off*st},duration:1.2,ease:'power1.inOut'},'+=.4').to(lnp,{attr:{x2:x0+off*st},duration:1.2,ease:'power1.inOut'},'<')
       .to(svg.querySelectorAll('.nd.off'),{scale:1.5,transformOrigin:'center',duration:.3,yoyo:true,repeat:1})
-      .to(mv,{attr:{cx:x0},duration:0},'+=2').to(lnp,{attr:{x2:x0},duration:0},'<');}
-  if(k==='split'){const tl=gsap.timeline({delay:.6,repeat:-1,repeatDelay:2});
-    tl.to(['#uA','#uB'],{x:120,duration:1.4,ease:'power2.inOut'}).to('#uA',{x:400,y:-58,duration:1.6,ease:'power2.inOut'},'+=.3').to('#uB',{x:270,y:56,duration:1.6,ease:'power2.inOut'},'<').to(['#uA','#uB'],{x:0,y:0,duration:0},'+=2.2');}
+      ;}
+  if(k==='split'){const tl=gsap.timeline({delay:.6});
+    tl.to(['#uA','#uB'],{x:120,duration:1.4,ease:'power2.inOut'}).to('#uA',{x:400,y:-58,duration:1.6,ease:'power2.inOut'},'+=.3').to('#uB',{x:270,y:56,duration:1.6,ease:'power2.inOut'},'<');}
   if(k==='levels'){const tl=gsap.timeline({delay:.4});tl.from('#arr2',{drawSVG:'0%',duration:.8}).to('#cab',{y:-94,duration:1.4,ease:'power2.inOut'},'+=.2').from(svg.querySelectorAll('.arr:not(#arr2)'),{drawSVG:'0%',duration:.8});}
-  if(k==='plaza'){const tl=gsap.timeline({delay:.5});tl.from(svg.querySelector('.arr'),{drawSVG:'0%',duration:.7}).from(svg.querySelectorAll('.bay,.bayt'),{opacity:0,y:8,duration:.3,stagger:.04}).to('#busm',{opacity:1,duration:.4}).fromTo('#busm',{x:-260},{x:0,duration:1.6,ease:'power3.out'},'<').to(svg.querySelector('.bay.hi'),{scale:1.08,transformOrigin:'center',duration:.4,yoyo:true,repeat:3});}
+  if(k==='plaza'){const tl=gsap.timeline({delay:.5});tl.from(svg.querySelector('.arr'),{drawSVG:'0%',duration:.7}).from(svg.querySelectorAll('.bay,.bayt'),{opacity:0,y:8,duration:.3,stagger:.04}).to('#busm',{opacity:1,duration:.4}).fromTo('#busm',{x:-260},{x:0,duration:1.6,ease:'power3.out'},'<').to(svg.querySelector('.bay.hi'),{scale:1.06,transformOrigin:'center',duration:.4,yoyo:true,repeat:1});}
 }
-function go(i){i=Math.max(0,Math.min(M.length-1,i));const dir=i>viewIdx?1:-1;const old=$('#stepCard');viewIdx=i;store.view=i;save();
+function updateDynamic(){const m=M[viewIdx];const i=viewIdx;const n=nowZ();const t=n.h*60+n.m+n.s/60;const pos=posIdx();const isCur=i===pos;const left=n.date===DAY?mins(m.end)-t:null;const st=$('[data-dyn=status]');if(st)st.innerHTML=isCur?(n.date===DAY&&left!=null?`<span class="pill ok"><i></i>agora · ${fmtDur(left)} restantes</span>`:`<span class="pill ok"><i></i>passo atual</span>`):(i<pos?`<span class="pill"><i></i>feito</span>`:`<span class="pill"><i></i>a seguir</span>`);const lq=LIVE_Q.find(q=>q.m.includes(m.id));const lv=$('[data-dyn=live]');if(lv)lv.innerHTML=lq?pills(lq.id):''}
+function go(i){i=Math.max(0,Math.min(M.length-1,i));const dir=i>viewIdx?1:-1;const old=$('#stepCard');if(old)gsap.killTweensOf(old.querySelectorAll('*'));viewIdx=i;store.view=i;save();
   if(old){gsap.to(old,{x:-40*dir,opacity:0,duration:.22,ease:'power2.in',onComplete(){renderStep(true);renderLine(true);gsap.fromTo('#stepCard',{x:40*dir},{x:0,duration:.35,ease:'power3.out'})}})}else{renderStep(true);renderLine(true)}
   window.scrollTo({top:0,behavior:'smooth'})}
 
@@ -631,7 +636,7 @@ function renderMapa(){
     </div>${comp}</div></div>
     <div class="sec"><h2>Trens e ônibus ao vivo</h2><div class="list">${LIVE_Q.map(q=>`<div class="row2"><div><div class="a">${q.label}</div><div class="b">${q.from} → ${q.to}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${pills(q.id)}</div></div>`).join('')}</div></div>`;
   const b=$('#gpsBtn');if(b)b.addEventListener('click',startGPS);
-  gsap.fromTo('#mring',{attr:{r:5},opacity:.8},{attr:{r:18},opacity:0,duration:1.8,repeat:-1,ease:'power1.out'});
+  gsap.fromTo('#mring',{attr:{r:5},opacity:.8},{attr:{r:18},opacity:0,duration:1.8,repeat:3,ease:'power1.out'});
 }
 function renderInfo(){
   store.check=store.check||{};
@@ -661,9 +666,10 @@ function checkGeo(){if(!gps.fix)return;const p=[gps.fix.lon,gps.fix.lat];const i
 function policyBlocked(){try{if(document.featurePolicy&&document.featurePolicy.allowsFeature)return !document.featurePolicy.allowsFeature('geolocation')}catch(e){}return false}
 function startGPS(){if(!('geolocation' in navigator)){gps.err='Este aparelho não expõe localização.';renderMapa();return}if(policyBlocked()){gps.err='<b>Este visualizador bloqueia o GPS.</b> Abra a página em baldasso.github.io/alpes-0211.';renderMapa();return}
   try{audio=audio||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}try{startCompass()}catch(e){}const b=$('#gpsBtn');if(b)b.textContent='Localizando…';
-  const ok=pos=>{gps.fix={lat:pos.coords.latitude,lon:pos.coords.longitude,acc:pos.coords.accuracy};gps.err=null;store.gps=true;save();checkGeo();renderMapa();renderStep(false)};
+  const ok=pos=>{gps.fix={lat:pos.coords.latitude,lon:pos.coords.longitude,acc:pos.coords.accuracy};gps.err=null;const first=!store.gps;store.gps=true;save();const before=bigAlert;checkGeo();if(first||$('#v-mapa').classList.contains('on'))renderMapa();if(bigAlert!==before)renderStep(false);else updateDynamic()};
   const bad=e=>{gps.err=e.code===1?'<b>Permissão negada.</b> No Chrome: cadeado na barra de endereço → Permissões → Localização → Permitir, e toque de novo.':'<b>Sem sinal de GPS ainda.</b> Tente perto de uma janela.';renderMapa()};
-  try{navigator.geolocation.getCurrentPosition(ok,bad,{enableHighAccuracy:true,timeout:15000,maximumAge:5000});navigator.geolocation.watchPosition(ok,()=>{},{enableHighAccuracy:true,maximumAge:10000})}catch(e){gps.err='Localização indisponível.';renderMapa()}}
+  gps.ok=ok;gps.bad=bad;try{navigator.geolocation.getCurrentPosition(ok,bad,{enableHighAccuracy:true,timeout:15000,maximumAge:5000})}catch(e){gps.err='Localização indisponível.';renderMapa()}}
+function pollGPS(){if(!gps.ok||document.hidden)return;try{navigator.geolocation.getCurrentPosition(gps.ok,()=>{},{enableHighAccuracy:true,timeout:12000,maximumAge:15000})}catch(e){}}
 function onOrient(e){let h=null;if(typeof e.webkitCompassHeading==='number')h=e.webkitCompassHeading;else if(typeof e.alpha==='number')h=(360-e.alpha)%360;if(h!=null){compass.heading=h;const a=document.getElementById('cArrow');if(a&&gps.fix){const g=GEO[M[posIdx()].id];if(g){const br=bearing([gps.fix.lon,gps.fix.lat],ALL[g.target]);gsap.to(a,{rotate:(br-h+360)%360,duration:.4,ease:'power2.out',transformOrigin:'42px 42px'})}}}}
 function startCompass(){if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function'){DeviceOrientationEvent.requestPermission().then(r=>{if(r==='granted')window.addEventListener('deviceorientation',onOrient)}).catch(()=>{})}else{if('ondeviceorientationabsolute' in window)window.addEventListener('deviceorientationabsolute',onOrient);else window.addEventListener('deviceorientation',onOrient)}}
 
@@ -688,15 +694,18 @@ function celebrate(){confetti(true);setTimeout(()=>confetti(false),700);setTimeo
   gsap.fromTo('.fin .stats div',{y:20,opacity:0},{y:0,opacity:1,duration:.6,stagger:.12,delay:.4,ease:'power3.out'})}
 
 /* ============================================================ SHELL */
-function setView(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));const k={guia:0,mapa:1,info:2}[v];gsap.to('#ind',{xPercent:k*100,duration:.35,ease:'power3.out'});$('#prev').style.visibility=$('#next').style.visibility=v==='guia'?'visible':'hidden';$('#stepidx').style.visibility=v==='guia'?'visible':'hidden';if(v==='mapa')renderMapa();if(v==='info')renderInfo();window.scrollTo({top:0});location.hash=v==='guia'?'':'#'+v}
+function setView(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));const k={guia:0,mapa:1,info:2}[v];gsap.to('#ind',{xPercent:k*100,duration:.35,ease:'power3.out'});$('#prev').style.visibility=$('#next').style.visibility=v==='guia'?'visible':'hidden';if(v==='mapa')renderMapa();if(v==='info')renderInfo();window.scrollTo({top:0});location.hash=v==='guia'?'':'#'+v}
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.v)));
 $('#prev').addEventListener('click',()=>go(viewIdx-1));$('#next').addEventListener('click',()=>go(viewIdx+1));
 let sx=null,sy=null;document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});document.addEventListener('touchend',e=>{if(sx==null||!$('#v-guia').classList.contains('on'))return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>90&&Math.abs(dx)>2.5*Math.abs(dy)){go(viewIdx+(dx<0?1:-1))}sx=sy=null},{passive:true});
-function tick(){const n=nowZ();$('#hm').textContent=`${pad(n.h)}:${pad(n.m)}`;$('#ss').textContent=pad(n.s)}
+function tick(){const n=nowZ();$('#hm').textContent=`${pad(n.h)}:${pad(n.m)}`;const t=n.h*60+n.m;const p=n.date<DAY?0:n.date>DAY?1:Math.max(0,Math.min(1,(t-mins('08:30'))/(mins('16:40')-mins('08:30'))));$('#slimBar').style.width=(p*100).toFixed(1)+'%'}
 function renderAll(){renderStep(false);renderLine(false)}
-renderStep(true);renderLine(false);tick();setInterval(tick,1000);
-setInterval(()=>{if(store.pos==null){const a=autoIdx();if(a!==posIdx()){}}renderStep(false);renderLine(false)},30000);
-fetchLive();setInterval(fetchLive,60000);
+renderStep(true);renderLine(false);tick();
+let timers=[];function startTimers(){stopTimers();timers=[setInterval(tick,15000),setInterval(()=>{updateDynamic();renderLine(false)},30000),setInterval(fetchLive,120000),setInterval(()=>{if(store.gps)pollGPS()},30000)]}function stopTimers(){timers.forEach(clearInterval);timers=[]}
+startTimers();fetchLive();
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stopTimers();gsap.globalTimeline.pause()}else{gsap.globalTimeline.resume();tick();updateDynamic();fetchLive();if(store.gps)pollGPS();startTimers()}});
+if(store.lineCollapsed)$('.hdr').classList.add('collapsed');
+$('#lineToggle').addEventListener('click',()=>{const h=$('.hdr');h.classList.toggle('collapsed');store.lineCollapsed=h.classList.contains('collapsed');save()});
 if(location.hash==='#mapa')setView('mapa');else if(location.hash==='#info')setView('info');
 (async()=>{try{if(navigator.permissions&&navigator.permissions.query){const st=await navigator.permissions.query({name:'geolocation'});if(st.state==='granted'||store.gps){startGPS()}}else if(store.gps)startGPS()}catch(e){if(store.gps)startGPS()}})();
 </script>
