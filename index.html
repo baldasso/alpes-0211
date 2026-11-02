@@ -486,10 +486,10 @@ const M=[
 ];
 
 /* ============================================================ GEO / AO VIVO */
-const PTS={gva:[6.109,46.231],geneve:[6.142,46.210],nyon:[6.237,46.383],lausanne:[6.629,46.517],vevey:[6.843,46.462],montreux:[6.911,46.436],montbovon:[7.045,46.489],chateau:[7.137,46.475],gstaad:[7.287,46.473],zweisimmen:[7.374,46.555],erlenbach:[7.555,46.660],spiez:[7.680,46.686],iwest:[7.852,46.683],wilderswil:[7.864,46.665],zweil:[7.906,46.633],grindelwald:[8.041,46.624]};
+const PTS={gva:[6.109,46.231],geneve:[6.142,46.210],versoix:[6.165,46.283],nyon:[6.237,46.383],rolle:[6.338,46.459],morges:[6.498,46.511],lausanne:[6.629,46.517],vevey:[6.843,46.462],montreux:[6.911,46.436],montbovon:[7.045,46.489],chateau:[7.137,46.475],gstaad:[7.287,46.473],zweisimmen:[7.374,46.555],erlenbach:[7.555,46.660],spiez:[7.680,46.686],iwest:[7.852,46.683],wilderswil:[7.864,46.665],zweil:[7.906,46.633],grindelwald:[8.041,46.624]};
 const RAIL=Object.keys(PTS);
 const ALL=Object.assign({},PTS,{schwendi:[7.993,46.632],gterminal:[8.024,46.628],bergwelt:[8.045,46.626],rivage:[6.142,45.909]});
-const NAMES={gva:'Genève-Aéroport',geneve:'Genève',nyon:'Nyon',lausanne:'Lausanne',vevey:'Vevey',montreux:'Montreux',montbovon:'Montbovon',chateau:'Château-d’Œx',gstaad:'Gstaad',zweisimmen:'Zweisimmen',erlenbach:'Erlenbach',spiez:'Spiez',iwest:'Interlaken West',wilderswil:'Wilderswil',zweil:'Zweilütschinen',grindelwald:'Grindelwald',schwendi:'Schwendi',gterminal:'Grindelwald Terminal',bergwelt:'Bergwelt',rivage:'Rivage'};
+const NAMES={gva:'Genève-Aéroport',geneve:'Genève',versoix:'Versoix',nyon:'Nyon',rolle:'Rolle',morges:'Morges',lausanne:'Lausanne',vevey:'Vevey',montreux:'Montreux',montbovon:'Montbovon',chateau:'Château-d’Œx',gstaad:'Gstaad',zweisimmen:'Zweisimmen',erlenbach:'Erlenbach',spiez:'Spiez',iwest:'Interlaken West',wilderswil:'Wilderswil',zweil:'Zweilütschinen',grindelwald:'Grindelwald',schwendi:'Schwendi',gterminal:'Grindelwald Terminal',bergwelt:'Bergwelt',rivage:'Rivage'};
 const GEO={
  m0:{target:'gva',arrive:['gva',0.4,'m1']},m1:{target:'gva'},m2:{target:'gva',leave:['gva',2,'m3']},
  m3:{target:'montreux',prep:['vevey',2.5,'Vevey → próxima é MONTREUX. Peguem as malas na ponta do vagão.'],off:['montreux',1.5,'DESCER EM MONTREUX — Voie 3, agora.'],arrive:['montreux',0.5,'m4']},
@@ -544,7 +544,7 @@ function renderStep(animate=true){
   const left=n.date===DAY?mins(m.end)-t:null;
   let alerts='';
   if(isCur&&bigAlert)alerts+=`<div class="alert ${bigAlert.kind}">${bigAlert.txt}</div>`;
-  if(isCur&&gps.fix){const p=[gps.fix.lon,gps.fix.lat];const off=distToRoute(p);const nr=nearest(p);alerts+=off>3?`<div class="alert warn"><b>GPS: ${off.toFixed(1)} km fora da rota.</b> Perguntem “Grindelwald?” a alguém de uniforme e usem o app SBB.</div>`:`<div class="alert okk"><b>GPS: na rota.</b> Mais perto de ${NAMES[nr.k]} · ${nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km'}.</div>`}
+  if(isCur&&gps.fix){const p=[gps.fix.lon,gps.fix.lat];const off=distToRoute(p);const nr=nearest(p);alerts+=off>6?`<div class="alert warn"><b>GPS: ${off.toFixed(1)} km fora da rota prevista.</b> Se estiverem num trem para Brig/Montreux, ignorem; senão perguntem “Montreux?” a alguém de uniforme.</div>`:`<div class="alert okk"><b>GPS: na rota.</b> Mais perto de ${NAMES[nr.k]} · ${nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km'}.</div>`}
   const timeBlock=`<div class="time"><div class="h t">${m.t}</div><div class="k">${m.stage}</div></div>`;
   const head=`<div class="head">${timeBlock}<div><div class="cmd">${m.cmd}</div><div class="sub">${m.sub}</div></div></div>`;
   const statusPill=isCur?(n.date===DAY&&left!=null?`<span class="pill ok"><i></i>agora · ${fmtDur(left)} restantes</span>`:`<span class="pill ok"><i></i>passo atual</span>`):(i<pos?`<span class="pill"><i></i>feito</span>`:`<span class="pill"><i></i>a seguir</span>`);
@@ -632,7 +632,7 @@ function renderMapa(){
     <div class="mbody">
       <div style="font-size:14px;color:var(--ink-2);line-height:1.4" id="gpsTxt">${gps.fix?`<b style="color:var(--ink)">GPS ativo.</b> O ponto vermelho é vocês. O celular vibra ao se aproximar de cada parada importante e o passo avança sozinho.`:gps.err?gps.err:`Toque em <b style="color:var(--ink)">Ativar GPS</b> e permita a localização. A partir daí o ponto vermelho é vocês, a seta aponta para a próxima estação, o celular vibra para pegar as malas e para descer, e o passo avança sozinho.`}</div>
       ${gps.fix?'':`<button class="btn gold wide" id="gpsBtn">${gps.err?'Tentar GPS de novo':'Ativar GPS'}</button>`}
-      ${gps.fix?`<div class="kv"><div><div class="k">Mais perto de</div><div class="v">${(()=>{const nr=nearest([gps.fix.lon,gps.fix.lat]);return NAMES[nr.k]+' · '+(nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km')})()}</div></div><div><div class="k">Na rota?</div><div class="v">${(()=>{const o=distToRoute([gps.fix.lon,gps.fix.lat]);return o<3?'Sim ✓':'Não · '+o.toFixed(1)+' km fora'})()}</div></div></div>`:''}
+      ${gps.fix?`<div class="kv"><div><div class="k">Mais perto de</div><div class="v">${(()=>{const nr=nearest([gps.fix.lon,gps.fix.lat]);return NAMES[nr.k]+' · '+(nr.d<1?Math.round(nr.d*1000)+' m':nr.d.toFixed(1)+' km')})()}</div></div><div><div class="k">Na rota?</div><div class="v">${(()=>{const o=distToRoute([gps.fix.lon,gps.fix.lat]);return o<6?'Sim ✓':'Não · '+o.toFixed(1)+' km fora'})()}</div></div></div>`:''}
       <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${q}&travelmode=walking">Google Maps → ${nm}</a><a class="btn" target="_blank" rel="noopener" href="https://www.sbb.ch/en/timetable?to=Grindelwald">App SBB → Grindelwald</a></div>
     </div>${comp}</div></div>
     <div class="sec"><h2>Trens e ônibus ao vivo</h2><div class="list">${LIVE_Q.map(q=>`<div class="row2"><div><div class="a">${q.label}</div><div class="b">${q.from} → ${q.to}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${pills(q.id)}</div></div>`).join('')}</div></div>`;
